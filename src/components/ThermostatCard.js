@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from './Card/Card';
 import { IconButton, Typography } from '@mui/material';
-// import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-// import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 

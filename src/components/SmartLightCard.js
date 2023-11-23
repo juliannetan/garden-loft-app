@@ -1,7 +1,6 @@
 // SmartLightCard.js
 import React, { useEffect, useState } from 'react';
 import Card from './Card/Card';
-import LightbulbButton from './icons/LightbulbButton';
 import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 import { Typography } from '@mui/material';
 

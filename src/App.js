@@ -1,18 +1,22 @@
-// App.js
 import React from 'react';
-import SmartLightCard from './components/SmartLightCard';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ThermostatCard from './components/ThermostatCard';
-import './App.css';
+import SmartLightCard from './components/SmartLightCard';
+import Home from './pages/Home';
+import SmartLoftPage from './pages/SmartLoftPage';
+// import { ThemeProvider } from 'styled-components';
+// import styled from './themes/styled';
 
 function App() {
   return (
-    <div className="App">
-      <div className="card-container">
-        <SmartLightCard />
-        <ThermostatCard />
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/smart-light" element={<SmartLightCard />} />
+        <Route path="/thermostat" element={<ThermostatCard />} />
+        <Route path="/smart-loft" element={<SmartLoftPage />} />
+      </Routes>
+    </Router>
   );
 }
-
 export default App;

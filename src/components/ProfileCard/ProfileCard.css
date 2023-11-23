@@ -1,0 +1,51 @@
+/* src/components/ProfileCard.css */
+
+.profile-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.profile-card-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-card {
+  width: 200px;
+  height: 200px;
+  background: gray;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 50px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profile-card-title {
+  margin-top: 10px;
+  font-weight: bold;
+  color: gray;
+}
+
+.icon-container {
+  flex: 1; /* Take up remaining space vertically */
+  display: flex;
+  align-items: center; /* Center the icon vertically */
+  justify-content: center; /* Center the icon horizontally */
+}
+
+.profile-card svg {
+  width: 150px; /* Set the width of your SVG icons */
+  height: 150px; /* Set the height of your SVG icons */
+  fill: white; /* Set the fill color of your SVG icons */
+}
+
+.profile-card h3 {
+  margin: 10px 0 0;
+}
