@@ -12,7 +12,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/smart-light" element={<SmartLightCard />} />
+        <Route path="/smart-lights" element={<SmartLightCard />} />
         <Route path="/thermostat" element={<ThermostatCard />} />
         <Route path="/smart-loft" element={<SmartLoftPage />} />
       </Routes>

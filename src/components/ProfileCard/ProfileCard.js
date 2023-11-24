@@ -1,23 +1,124 @@
+// // ProfileCard.js
+// import React from 'react';
+// import { Link } from 'react-router-dom';
+// import styled from 'styled-components';
+
+// // Styled components
+// const ProfileCardLink = styled(Link)`
+//   text-decoration: none;
+// `;
+
+// const ProfileCardContainer = styled.div`
+//   width: 200px;
+//   height: 200px;
+//   background: ${(props) => props.backgroundColor || 'gray'};
+//   border-radius: 10px;
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+//   margin: 50px;
+//   padding: 20px;
+//   text-align: center;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+// `;
+
+// const CardContent = styled.div`
+//   .icon-container {
+//     flex: 1;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+
+//     svg {
+//       width: 150px;
+//       height: 150px;
+//       fill: white;
+//     }
+//   }
+
+//   h3 {
+//     margin: 10px 0 0;
+//   }
+// `;
+
+// const ProfileCard = ({ link, icon, backgroundColor }) => {
+//   return (
+//     <ProfileCardLink to={link}>
+//       <ProfileCardContainer backgroundColor={backgroundColor}>
+//         <CardContent>
+//           {/* SVG Icon */}
+//           <div className="icon-container">{icon}</div>
+//           {/* Other Card Content Here */}
+//         </CardContent>
+//       </ProfileCardContainer>
+//     </ProfileCardLink>
+//   );
+// };
+
+// export default ProfileCard;
+
 // ProfileCard.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './ProfileCard.css';
+import styled from 'styled-components';
 
-const ProfileCard = ({ link, icon, backgroundColor }) => {
-  const cardStyle = {
-    backgroundColor: backgroundColor,
-  };
+const ProfileCardLink = styled(Link)`
+  text-decoration: none;
+`;
+
+const ProfileCardContainer = styled.div`
+  width: 200px;
+  height: 200px;
+  background: ${(props) => props.backgroundColor || 'gray'};
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 50px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const CardContent = styled.div`
+  .icon-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 150px;
+      height: 150px;
+      fill: white;
+    }
+  }
+
+  h3 {
+    margin: 10px 0 0;
+  }
+`;
+
+const ProfileCard = ({ link, icon, title, backgroundColor }) => {
   return (
-    <Link to={link} className="profile-card-link">
-      <div className="profile-card" style={cardStyle}>
-        <div className="card-content">
+    <ProfileCardLink to={link}>
+      <ProfileCardContainer backgroundColor={backgroundColor}>
+        <CardContent>
           {/* SVG Icon */}
           <div className="icon-container">{icon}</div>
           {/* Other Card Content Here */}
-        </div>
-      </div>
-    </Link>
+          <h3>{title}</h3>
+        </CardContent>
+      </ProfileCardContainer>
+    </ProfileCardLink>
   );
 };
 
 export default ProfileCard;
+

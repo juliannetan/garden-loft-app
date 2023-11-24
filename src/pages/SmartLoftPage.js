@@ -1,38 +1,33 @@
-// App.js
+// SmartLoftPage.js
 import React from 'react';
-import SmartLightCard from '../components/SmartLightCard';
-import ThermostatCard from '../components/ThermostatCard';
-import './SmartLoftPage.css';
+import ProfileCard from '../components/ProfileCard/ProfileCard';
+import '../components/ProfileCard/ProfileCard.css';
+import { DoorIcon, GardenLoftIcon, LampIcon, ThermostatIcon } from '../components/icons';
 
-function SmartLoftPage() {
+const SmartLoftPage = () => {
   return (
-    <div className="App">
-      <div className="card-container">
-        <SmartLightCard />
-        <ThermostatCard />
+    <div className="home-container">
+      <GardenLoftIcon />
+
+      <div className="profile-card-container">
+        <div className="profile-card-column">
+        <ProfileCard backgroundColor="#1E6996" link={"/smart-lights"} icon={<LampIcon />} />
+          <div className="profile-card-title">Smart Lights</div>
+        </div>
+
+        <div className="profile-card-column">
+        <ProfileCard backgroundColor="#F68044" link={"/thermostat"} icon={<ThermostatIcon />} />
+          <div className="profile-card-title">Thermostat</div>
+        </div>
+
+        <div className="profile-card-column">
+          <ProfileCard backgroundColor="#1E6996" link={"/door-lock"} icon={<DoorIcon />} />
+          <div className="profile-card-title">Door Lock</div>
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default SmartLoftPage;
 
-// // HomePage.js
-// import React from 'react';
-// import './SmartLoftPage.css';
-// import Carousel from '../components/Carousel';
-// import SmartLightCard from '../components/SmartLightCard';
-// import ThermostatCard from '../components/ThermostatCard';
-
-// const SmartLoftPage = () => {
-//   const cards = [ThermostatCard, ThermostatCard, ThermostatCard, ThermostatCard, SmartLightCard];
-
-//   return (
-//     <div>
-//       <h1>Smart Home Interface</h1>
-//       <Carousel cards={cards} />
-//     </div>
-//   );
-// };
-
-// export default SmartLoftPage;
