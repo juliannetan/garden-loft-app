@@ -50,7 +50,6 @@ const Carousel = ({ cards }) => {
 
   return (
     <CarouselContainer>
-      <CarouselButton onClick={prevCard}>Previous</CarouselButton>
       <CarouselContent translateValue={translateValue}>
         {cards.map((Card, index) => (
           <CarouselCard key={index} active={index === currentIndex}>
@@ -58,7 +57,6 @@ const Carousel = ({ cards }) => {
           </CarouselCard>
         ))}
       </CarouselContent>
-      <CarouselButton onClick={nextCard}>Next</CarouselButton>
     </CarouselContainer>
   );
 };

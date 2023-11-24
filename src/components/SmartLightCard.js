@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react';
 import Card from './Card/Card';
 import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 import { Typography } from '@mui/material';
+import ProfileCard from './ProfileCard/ProfileCard';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import { GardenLoftIcon } from './icons';
 
 const SmartLightCard = () => {
   const [socket, setSocket] = useState(null);
@@ -141,11 +144,17 @@ const SmartLightCard = () => {
   };
 
   return (
-    <Card>
-      <Typography variant="h4" className="temperature-display">Smart Light</Typography>
-      <LightbulbOutlinedIcon onClick={toggleSwitch} style={{ display: 'flex', margin: 'auto', justifyContent: 'center', alignItems: 'center', backgroundColor: 'linear-gradient(145deg, #6066A6, #4C5097)', borderRadius: '50%', width: '15rem', height: '15rem', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)' }} color={switchState === 'on' ? 'primary' : 'disabled'} />
-     <Typography className="switch-state">Switch State: {switchState}</Typography>
-    </Card>
+      <>
+      <GardenLoftIcon />
+      <div className="profile-card-column">
+        <ProfileCard
+          borderRadius={"200px"}
+          onClick={toggleSwitch}
+          backgroundColor={switchState === 'on' ? '#FFC100' : '#7F8181'}
+          icon={switchState === 'on' ? <LightbulbIcon onClick={toggleSwitch} /> : <LightbulbOutlinedIcon onClick={toggleSwitch} />} />
+        <div className="profile-card-title">Floor Light</div>
+        <Typography className="switch-state">{switchState}</Typography>
+      </div></>
   );
 };
 

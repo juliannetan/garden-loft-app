@@ -6,6 +6,7 @@ import SmartLoftPage from './pages/SmartLoftPage';
 import SmartLightsPage from './pages/SmartLightsPage';
 import QuotesPage from './pages/QuotesPage';
 import WelcomeScreen from './components/WelcomeScreen';
+import SmartLightCard from './components/SmartLightCard';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/thermostat" element={<ThermostatCard />} />
+        <Route path="/smart-light" element={<SmartLightCard />} />
         <Route path="/smart-loft" element={<SmartLoftPage />} />
         <Route path="/smart-lights" element={<SmartLightsPage />} />
         <Route path="/quotes-page" element={<QuotesPage />} />
