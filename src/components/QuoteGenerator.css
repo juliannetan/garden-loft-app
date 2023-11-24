@@ -1,0 +1,33 @@
+/* QuoteGenerator.css */
+.quote-overlay {
+  position: fixed;
+  top: 140px;
+  right: 105px;
+  max-width: 700px;
+  padding: 15px;
+  /* border-radius: 8px; */
+  text-align: justify;
+  font-size: 1.85em;
+  z-index: 2;
+  font-weight: 400;
+  color: rgb(27, 29, 29);
+}
+
+/* Rest of your existing styles... */
+
+blockquote {
+  text-indent: -0.45em;
+}
+@supports (hanging-punctuation: first) {
+  blockquote {
+    text-indent: 0;
+    hanging-punctuation: first;
+  }
+}
+
+/* blockquote::before {
+  content: open-quote;
+}
+blockquote::after {
+  content: close-quote;
+} */

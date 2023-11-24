@@ -39,6 +39,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import styled from 'styled-components';
 import ProfileCard from '../components/ProfileCard/ProfileCard';
 import { ContactsIcon, GardenLoftIcon, HealthIcon, LightbulbIcon, PeopleIcon, ServicesIcon, ScheduleIcon } from '../components/icons';
+import { Typography } from '@mui/material';
 
 const HomeContainer = styled.div`
   display: flex;
@@ -132,8 +133,8 @@ const Home = () => {
           ))}
         </Slider>
       </CarouselWrapper>
-      <PrevButton onClick={handlePrevious}>previous</PrevButton>
-      <NextButton onClick={handleNext}>Next</NextButton>
+      <PrevButton onClick={handlePrevious}><Typography variant='h4' color='#2D3E5F'>Previous</Typography></PrevButton>
+      <NextButton onClick={handleNext}><Typography variant='h4' color='#2D3E5F'>Next</Typography></NextButton>
     </HomeContainer>
   </>
   );

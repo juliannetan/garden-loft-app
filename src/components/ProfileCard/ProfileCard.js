@@ -70,7 +70,7 @@ const ProfileCardContainer = styled.div`
   width: 200px;
   height: 200px;
   background: ${(props) => props.backgroundColor || 'gray'};
-  border-radius: 10px;
+  border-radius: ${(props) => (props.borderRadius !== null && props.borderRadius !== undefined ? props.borderRadius : '10px')} !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 50px;
   padding: 20px;
@@ -105,10 +105,10 @@ const CardContent = styled.div`
   }
 `;
 
-const ProfileCard = ({ link, icon, title, backgroundColor }) => {
+const ProfileCard = ({ link, icon, title, backgroundColor, borderRadius }) => {
   return (
     <ProfileCardLink to={link}>
-      <ProfileCardContainer backgroundColor={backgroundColor}>
+      <ProfileCardContainer backgroundColor={backgroundColor} borderRadius={borderRadius}>
         <CardContent>
           {/* SVG Icon */}
           <div className="icon-container">{icon}</div>

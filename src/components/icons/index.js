@@ -9,5 +9,7 @@ export { default as DoorIcon } from './DoorIcon';
 export { default as ServicesIcon } from './ServicesIcon';
 export { default as HealthIcon } from './HealthIcon';
 export { default as ContactsIcon } from './ContactsIcon';
+export { default as LightbulbFilledIcon } from './LightbulbFilledIcon';
+export { default as LightbulbOutlineIcon } from './LightbulbOutlineIcon';
 
 
