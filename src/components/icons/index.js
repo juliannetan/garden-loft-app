@@ -12,5 +12,5 @@ export { default as ContactsIcon } from './ContactsIcon';
 export { default as LightbulbFilledIcon } from './LightbulbFilledIcon';
 export { default as LightbulbOutlineIcon } from './LightbulbOutlineIcon';
 export { default as TvIcon } from './TvIcon';
-
+export { default as SnowflakeIcon } from './SnowflakeIcon';
 
