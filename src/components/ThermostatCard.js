@@ -29,7 +29,7 @@ const CoolText = styled.div`
   left: 50%;
   transform: translateX(-50%);
   font-size: 24px;
-  color: #273381;
+  color: #2D3E5F;
   font-family: 'Roboto';
 `;
 
@@ -49,10 +49,10 @@ const Circle = styled.div`
 
 const CircleText = styled.span`
   position: absolute;
-  bottom: 100%;
+  bottom: 90%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #273381;
+  color: #2D3E5F;
   font-size: 60px;
   font-family: 'Roboto';
 `;
@@ -98,7 +98,7 @@ const CallHelpButton = styled.button`
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 48px;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
   font-family: 'Roboto';
 
@@ -225,36 +225,38 @@ const ThermostatCard = () => {
 
   return (
     <>
-      <GardenLoftIcon />
       <Container>
+      <GardenLoftIcon />
         <CircleContainer>
+        <CircleText>
+            <Typography variant="h2" fontWeight="500">Thermostat</Typography>
+          </CircleText>
           <Circle>
             <CoolText>
               <SnowflakeIcon />
-              <Typography variant="h5">Cool</Typography>
+              <Typography variant="h5" fontWeight="550">Cool</Typography>
             </CoolText>
             <Temperature variant="h1">{temperature}°C</Temperature>
           </Circle>
-          <CircleText>
-            <Typography variant="h1">Thermostat</Typography>
-          </CircleText>
           <Buttons>
             <IconButton className="button" onClick={increaseTemperature} >
-              <AddIcon fontSize="inherit" />
+              <AddIcon fontSize="large" fontWeight="700" />
             </IconButton>
             <IconButton className="button" onClick={decreaseTemperature} >
-              <RemoveIcon fontSize="inherit" />
+              <RemoveIcon fontSize="large" fontWeight="700" />
             </IconButton>
           </Buttons>
         </CircleContainer>
         <div className="dashboard"></div>
         <TopRightButtonContainer>
           <CallHelpButton id="top-right-button" primary>
-            <Typography>Call Help</Typography>
+            <Typography variant='h5' fontWeight="700">Call Help</Typography>
           </CallHelpButton>
         </TopRightButtonContainer>
         <BottomLeftButtonContainer>
-          <BackButton id="bottom-left-button"><Typography>Back</Typography></BackButton>
+          <BackButton id="bottom-left-button">
+            <Typography variant='h5' fontWeight="700">Back</Typography>
+          </BackButton>
         </BottomLeftButtonContainer>
       </Container>
     </>
