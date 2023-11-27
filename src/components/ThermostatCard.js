@@ -152,6 +152,16 @@ const Temperature = styled(Typography)`
 const ThermostatCard = () => {
     const [temperature, setTemperature] = useState(20);
 
+    const handleCallHelp = async () => {
+      try {
+        await fetch('http://localhost:3001/call-help'); // Adjust the server URL
+        console.log('Call initiated!');
+      } catch (error) {
+        console.error('Error initiating the call:', error);
+      }
+    };
+
+
   const increaseTemperature = async () => {
     try {
       if (temperature < 28) {
@@ -249,7 +259,7 @@ const ThermostatCard = () => {
         </CircleContainer>
         <div className="dashboard"></div>
         <TopRightButtonContainer>
-          <CallHelpButton id="top-right-button" primary>
+          <CallHelpButton id="top-right-button" primary onClick={handleCallHelp}>
             <Typography variant='h5' fontWeight="700">Call Help</Typography>
           </CallHelpButton>
         </TopRightButtonContainer>
