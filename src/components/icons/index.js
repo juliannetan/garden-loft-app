@@ -13,4 +13,12 @@ export { default as LightbulbFilledIcon } from './LightbulbFilledIcon';
 export { default as LightbulbOutlineIcon } from './LightbulbOutlineIcon';
 export { default as TvIcon } from './TvIcon';
 export { default as SnowflakeIcon } from './SnowflakeIcon';
+export { default as FilmIcon } from './FilmIcon';
+export { default as MusicIcon } from './MusicIcon';
+export { default as TeaIcon } from './TeaIcon';
+export { default as DryCleaningIcon } from './DryCleaningIcon';
+export { default as HaircutIcon } from './HaircutIcon';
+export { default as GroceryIcon } from './GroceryIcon';
+
+
 
