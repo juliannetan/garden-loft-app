@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ThermostatCard from './components/ThermostatCard';
 import Home from './pages/Home';
+import Services from './pages/Services';
+import Entertainment from './pages/Entertainment';
 import SmartLoftPage from './pages/SmartLoftPage';
 import SmartLightsPage from './pages/SmartLightsPage';
 import QuotesPage from './pages/QuotesPage';
@@ -13,6 +15,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/home" element={<Home />} />
+        <Route path="/entertainment" element={<Entertainment />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/thermostat" element={<ThermostatCard />} />
         <Route path="/smart-light" element={<SmartLightCard />} />
         <Route path="/smart-loft" element={<SmartLoftPage />} />
