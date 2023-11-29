@@ -36,7 +36,7 @@ const RippleAnimation = () => {
         <div className="circle small shade5"></div>
       </div>
       <div>
-        <button className="translucent-button">GO TO APP &gt;</button>
+        <button className="translucent-button">CONTINUE &gt;</button>
       </div>
     </ErrorBoundary>
   );
