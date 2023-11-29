@@ -4,20 +4,20 @@ import "./QuoteGenerator.css";
 import ErrorBoundary from "./ErrorBoundary";
 
 const quotes = [
-  "EMBRACE THE RHYTHM OF YOUR BREATH; IT IS THE SONG OF YOUR SPIRIT DANCING WITH THE UNIVERSE.",
-  "FIND PEACE IN THE QUIET MOMENTS, AND LET THE STILLNESS OF YOUR SOUL GUIDE YOU TO SERENITY.",
-  "IN THE GARDEN OF LIFE, MAY YOUR HEART BLOOM WITH THE FLOWERS OF GRATITUDE AND JOY.",
-  "RADIATE LOVE LIKE THE SUN, WARMING THE HEARTS OF THOSE AROUND YOU WITH ITS GENTLE GLOW.",
-  "PEACE IS NOT FOUND IN THE ABSENCE OF CHAOS BUT IN THE QUIETUDE OF A CONTENTED HEART.",
-  "LET YOUR HEART BE A LIGHTHOUSE, GUIDING OTHERS WITH THE GENTLE BEAMS OF COMPASSION.",
-  "IN THE TAPESTRY OF EXISTENCE, EVERY THREAD IS WOVEN WITH THE ESSENCE OF DIVINE LOVE.",
-  "THE JOURNEY WITHIN IS THE PATH TO TRUE JOY; SEEK THE TREASURES HIDDEN IN THE DEPTHS OF YOUR SOUL.",
-  "MAY YOUR SPIRIT BE A TRANQUIL RIVER, FLOWING GRACEFULLY THROUGH THE LANDSCAPES OF LIFE.",
-  "THE LANGUAGE OF THE HEART SPEAKS IN WHISPERS; LISTEN CLOSELY, AND YOU'LL HEAR THE MELODY OF JOY.",
-  "PEACE IS NOT MERELY A DESTINATION BUT A WAY OF TRAVELING THROUGH THE EBB AND FLOW OF LIFE.",
-  "AMIDST THE CHAOS, FIND SOLACE IN THE SANCTUARY OF YOUR SOUL, WHERE JOY IS A SACRED FLAME.",
-  "LET GRATITUDE BE YOUR PRAYER, AND LET THE UNIVERSE RESPOND WITH BLESSINGS BEYOND MEASURE.",
-  "IN THE SILENCE OF MEDITATION, DISCOVER THE SYMPHONY OF YOUR SPIRIT, RESONATING WITH PEACE.",
+  "Embrace the rhythm of your breath; it is the song of your spirit dancing with the universe.",
+  "Find peace in the quiet moments, and let the stillness of your soul guide you to serenity.",
+  "In the garden of life, may your heart bloom with the flowers of gratitude and joy.",
+  "Radiate love like the sun, warming the hearts of those around you with its gentle glow.",
+  "Peace is not found in the absence of chaos but in the quietude of a contented heart.",
+  "Let your heart be a lighthouse, guiding others with the gentle beams of compassion.",
+  "In the tapestry of existence, every thread is woven with the essence of divine love.",
+  "The journey within is the path to true joy; seek the treasures hidden in the depths of your soul.",
+  "May your spirit be a tranquil river, flowing gracefully through the landscapes of life.",
+  "The language of the heart speaks in whispers; listen closely, and you'll hear the melody of joy.",
+  "Peace is not merely a destination but a way of traveling through the ebb and flow of life.",
+  "Amidst the chaos, find solace in the sanctuary of your soul, where joy is a sacred flame.",
+  "Let gratitude be your prayer, and let the universe respond with blessings beyond measure.",
+  "In the silence of meditation, discover the symphony of your spirit, resonating with peace.",
 ];
 
 const QuoteGenerator = () => {
