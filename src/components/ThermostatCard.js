@@ -157,7 +157,7 @@ const Temperature = styled(Typography)`
 
 const ThermostatCard = () => {
     const [temperature, setTemperature] = useState(20);
-    const [isSwitchOn, setIsSwitchOn] = useState(false);
+    const [isSwitchOn, setIsSwitchOn] = useState(true);
 
     const handleSwitchToggle = () => {
       setIsSwitchOn((prevIsSwitchOn) => !prevIsSwitchOn);

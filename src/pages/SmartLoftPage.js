@@ -2,30 +2,68 @@
 import React from 'react';
 import ProfileCard from '../components/ProfileCard/ProfileCard';
 import '../components/ProfileCard/ProfileCard.css';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import styled from 'styled-components';
 import { DoorIcon, GardenLoftIcon, LampIcon, ThermostatIcon } from '../components/icons';
 
+const HomeContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+`;
+
+const CarouselWrapper = styled.div`
+  margin: 0 auto;
+  max-width: 1000px; /* Adjust the max-width as needed */
+`;
+
+const CardColumn = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px; /* Adjust the padding to increase or decrease spacing */
+`;
+
 const SmartLoftPage = () => {
+  const settings = {
+    infinite: true,
+    speed: 500,
+    initialSlide: 1, // Set the initial slide to the middle card
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    dots: true,
+  };
+  const sliderRef = React.createRef();
+
+  const cardData = [
+    { link: '/smart-lights', icon: <LampIcon />, title: 'Smart Lights' },
+    { link: '/thermostat', icon: <ThermostatIcon />, title: 'Thermostat' },
+    { link: '/smart-home-settings', icon: <DoorIcon />, title: 'Door Lock' }
+    // Add more cards here
+  ];
+
+
   return (
-    <div className="home-container">
+    <>
       <GardenLoftIcon />
-
-      <div className="profile-card-container">
-        <div className="profile-card-column">
-        <ProfileCard backgroundColor="#1E6996" link={"/smart-lights"} icon={<LampIcon />} />
-          <div className="profile-card-title">Smart Lights</div>
-        </div>
-
-        <div className="profile-card-column">
-        <ProfileCard backgroundColor="#F68044" link={"/thermostat"} icon={<ThermostatIcon />} />
-          <div className="profile-card-title">Thermostat</div>
-        </div>
-
-        <div className="profile-card-column">
-          <ProfileCard backgroundColor="#1E6996" link={"/door-lock"} icon={<DoorIcon />} />
-          <div className="profile-card-title">Door Lock</div>
-        </div>
-      </div>
-    </div>
+      <HomeContainer>
+        <CarouselWrapper>
+          <Slider ref={sliderRef} {...settings}>
+            {cardData.map((card, index) => (
+              <CardColumn key={index}>
+                <ProfileCard link={card.link} icon={card.icon} backgroundColor={card.backgroundColor} />
+                <div className="profile-card-title">{card.title}</div>
+              </CardColumn>
+            ))}
+          </Slider>
+        </CarouselWrapper>
+      </HomeContainer>
+    </>
   );
 };
 
