@@ -5,6 +5,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { GardenLoftIcon, SnowflakeIcon } from "./icons";
 import { Typography } from '@mui/material';
+import ToggleSwitch from './ToggleSwitch';
 
 const Container = styled.div`
   display: flex;
@@ -38,13 +39,18 @@ const Circle = styled.div`
   height: 300px;
   border-radius: 50%;
   border: 15px solid white;
-  background-color: #acdeff;
+  background: ${(props) => (props.isSwitchOn ? '#acdeff' : 'linear-gradient(180deg, rgba(255, 35, 74, 0.504) 16.67%, rgba(244, 140, 6, 0.402) 100%)')};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   box-shadow: 10px 10px 18px #ba9607;
   font-family: 'Roboto';
+  transition: background-color 1s;
+`;
+
+const ToggleSwitchContainer = styled.div`
+  margin-top: 50px;
 `;
 
 const CircleText = styled.span`
@@ -151,6 +157,11 @@ const Temperature = styled(Typography)`
 
 const ThermostatCard = () => {
     const [temperature, setTemperature] = useState(20);
+    const [isSwitchOn, setIsSwitchOn] = useState(false);
+
+    const handleSwitchToggle = () => {
+      setIsSwitchOn((prevIsSwitchOn) => !prevIsSwitchOn);
+    };
 
     const handleCallHelp = async () => {
       try {
@@ -239,12 +250,12 @@ const ThermostatCard = () => {
       <GardenLoftIcon />
         <CircleContainer>
         <CircleText>
-            <Typography variant="h2" fontWeight="500">Thermostat</Typography>
-          </CircleText>
-          <Circle>
+        <Typography variant="h2" fontWeight="500">Thermostat</Typography>
+        </CircleText>
+          <Circle isSwitchOn={isSwitchOn}>
             <CoolText>
               <SnowflakeIcon />
-              <Typography variant="h5" fontWeight="550">Cool</Typography>
+              <Typography variant="h5" fontWeight="550">{isSwitchOn ? 'Cool' : 'Warm'}</Typography>
             </CoolText>
             <Temperature variant="h1">{temperature}°C</Temperature>
           </Circle>
@@ -254,10 +265,12 @@ const ThermostatCard = () => {
             </IconButton>
             <IconButton className="button" onClick={decreaseTemperature} >
               <RemoveIcon fontSize="large" fontWeight="700" />
-            </IconButton>
+          </IconButton>
+          <ToggleSwitchContainer>
+              <ToggleSwitch handleSwitchToggle={handleSwitchToggle}/>
+            </ToggleSwitchContainer>
           </Buttons>
-        </CircleContainer>
-        <div className="dashboard"></div>
+            </CircleContainer>
         <TopRightButtonContainer>
           <CallHelpButton id="top-right-button" primary onClick={handleCallHelp}>
             <Typography variant='h5' fontWeight="700">Call Help</Typography>
