@@ -100,8 +100,6 @@ const CardContent = styled.div`
     justify-content: center;
 
     svg {
-      width: 150px;
-      height: 150px;
       fill: #f3b717;
     }
   }
