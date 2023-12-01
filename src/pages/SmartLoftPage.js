@@ -6,7 +6,10 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styled from 'styled-components';
-import { DoorIcon, GardenLoftIcon, LampIcon, ThermostatIcon } from '../components/icons';
+import { DoorIcon, LampIcon, ThermostatIcon } from '../components/icons';
+import Navbar from "../components/Navbar";
+import CallHelpButtonComponent from "../components/CallHelpButton";
+import LocationIndicator from "../components/LocationIndicator";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -49,7 +52,7 @@ const SmartLoftPage = () => {
 
   return (
     <>
-      <GardenLoftIcon />
+      <Navbar />
       <HomeContainer>
         <CarouselWrapper>
           <Slider ref={sliderRef} {...settings}>
@@ -61,10 +64,11 @@ const SmartLoftPage = () => {
             ))}
           </Slider>
         </CarouselWrapper>
+        <LocationIndicator currentPage={"loft controls"} />
+        <CallHelpButtonComponent />
       </HomeContainer>
     </>
   );
 };
 
 export default SmartLoftPage;
-

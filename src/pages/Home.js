@@ -5,9 +5,12 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styled from 'styled-components';
 import ProfileCard from '../components/ProfileCard/ProfileCard';
-import { ContactsIcon, GardenLoftIcon, HealthIcon, LightbulbIcon, TvIcon, ServicesIcon, SettingsIcon, ScheduleIcon, ShortcutIcon } from '../components/icons';
+import { ContactsIcon, HealthIcon, LightbulbIcon, TvIcon, ServicesIcon, SettingsIcon, ScheduleIcon, ShortcutIcon } from '../components/icons';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import Navbar from "../components/Navbar";
+import CallHelpButtonComponent from "../components/CallHelpButton";
+import LocationIndicator from "../components/LocationIndicator";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -103,13 +106,13 @@ const Home = () => {
   };
 
   const sliderRef = React.createRef();
-
   const [disableHover, setDisableHover] = useState(false);
 
   return (
     <>
-      <GardenLoftIcon />
-      <HomeContainer disableHover={disableHover}>
+        <Navbar />
+        {/* <PageTitle title="Home" /> */}
+        <HomeContainer disableHover={disableHover}>
         <CarouselWrapper>
           <Slider ref={sliderRef} {...settings}>
             {cardData.map((card, index) => (
@@ -121,6 +124,8 @@ const Home = () => {
           </Slider>
         </CarouselWrapper>
       </HomeContainer>
+      <LocationIndicator currentPage={"home"} />
+      <CallHelpButtonComponent />
     </>
   );
 };

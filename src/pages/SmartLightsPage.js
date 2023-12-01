@@ -3,9 +3,12 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { LightbulbFilledIcon, LightbulbMultiple, LightbulbOutlineIcon, GardenLoftIcon } from '../components/icons';
+import { LightbulbFilledIcon, LightbulbMultiple, LightbulbOutlineIcon } from '../components/icons';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import Navbar from "../components/Navbar";
+import CallHelpButtonComponent from "../components/CallHelpButton";
+import LocationIndicator from "../components/LocationIndicator";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -148,7 +151,7 @@ const SmartLightsPage = () => {
 
   return (
     <>
-    <GardenLoftIcon />
+    <Navbar />
     <HomeContainer>
         <CarouselWrapper>
       <Slider {...settings}>
@@ -172,6 +175,8 @@ const SmartLightsPage = () => {
         ))}
       </Slider>
       </CarouselWrapper>
+      <LocationIndicator currentPage={"lights control"} />
+      <CallHelpButtonComponent />
       </HomeContainer>
     </>
   );
