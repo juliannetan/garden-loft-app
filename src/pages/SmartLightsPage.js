@@ -13,6 +13,19 @@ const HomeContainer = styled.div`
   align-items: center;
   min-height: 100vh;
   text-align: center;
+
+  div.slick-slide.slick-active.slick-center.slick-current {
+    .smart-lights-div {
+      transform: scale(1.3);
+      transition: transform 0.5s ease;
+      padding: 20px;
+    }
+    .icon-container {
+      svg {
+        fill: #e9ebf8;
+      }
+    }
+  }
 `;
 
 const CarouselWrapper = styled.div`
@@ -51,15 +64,12 @@ const RoundButton = styled.div`
   border-radius: 200px;
   margin: 50px;
   transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   text-align: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
+
 `;
 
 
@@ -89,7 +99,6 @@ const lightsData = [
   { id: 'overhead-light', label: 'Overhead', status: 'Off', icon: <LightbulbFilledIcon /> },
   { id: 'kitchen-light', label: 'Accent', status: 'Off', icon: <LightbulbFilledIcon /> },
   { id: 'bedroom-light', label: 'Bedroom', status: 'Off', icon: <LightbulbOutlineIcon /> },
-  { id: 'bathroom-light', label: 'Bathroom', status: 'Off', icon: <LightbulbOutlineIcon />  },
 
 ];
 
@@ -109,6 +118,8 @@ const SmartLightsPage = () => {
   );
 
   const settings = {
+    centerMode: true,
+    centerPadding: '0',
     infinite: true,
     speed: 500,
     slidesToShow: 3,
@@ -142,7 +153,7 @@ const SmartLightsPage = () => {
         <CarouselWrapper>
       <Slider {...settings}>
         <CardColumn>
-          <RoundButton isOn={lights.every(light => light.status === 'On')} onClick={handleAllOnOffClick}>
+          <RoundButton className="smart-lights-div" isOn={lights.every(light => light.status === 'On')} onClick={handleAllOnOffClick}>
             <CardContent>
               {lights.every(light => light.status === 'On') ? <LightbulbMultiple color={'#E9EBF8'} /> : <LightbulbMultiple />}
             </CardContent>
@@ -151,7 +162,7 @@ const SmartLightsPage = () => {
         </CardColumn>
         {lights.map(light => (
           <CardColumn key={light.id}>
-            <RoundButton isOn={light.status === 'On'} onClick={() => handleLightClick(light.id)}>
+            <RoundButton className="smart-lights-div" isOn={light.status === 'On'} onClick={() => handleLightClick(light.id)}>
               <CardContent>
                 {light.status === 'On' ? <LightbulbFilledIcon /> : <LightbulbOutlineIcon />}
               </CardContent>

@@ -1,5 +1,5 @@
 // Home.js
-import React from 'react';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -15,6 +15,20 @@ const HomeContainer = styled.div`
   align-items: center;
   min-height: 100vh;
   text-align: center;
+
+  div.slick-slide.slick-active.slick-center.slick-current {
+    .profile-card-div {
+      background: #f3b717;
+      transform: scale(1.2);
+      transition: transform 0.5s ease;
+      padding: 20px;
+    }
+    .icon-container {
+      svg {
+        fill: #e9ebf8;
+      }
+    }
+  }
 `;
 
 const CarouselWrapper = styled.div`
@@ -63,7 +77,7 @@ const Home = () => {
     { link: '/settings', icon: <SettingsIcon />, title: 'Settings' }
     // Add more cards here
   ];
-  
+
   const CustomNextArrow = ({ onClick }) => (
     <CustomArrowButton onClick={onClick} style={{ right: -100 }}>
       <ArrowForwardIosIcon fontSize='large'/>
@@ -77,6 +91,8 @@ const Home = () => {
   );
 
   const settings = {
+    centerMode: true,
+    centerPadding: '0',
     infinite: true,
     speed: 500,
     slidesToShow: 3,
@@ -88,16 +104,17 @@ const Home = () => {
 
   const sliderRef = React.createRef();
 
+  const [disableHover, setDisableHover] = useState(false);
 
   return (
     <>
       <GardenLoftIcon />
-      <HomeContainer>
+      <HomeContainer disableHover={disableHover}>
         <CarouselWrapper>
           <Slider ref={sliderRef} {...settings}>
             {cardData.map((card, index) => (
               <CardColumn key={index}>
-                <ProfileCard link={card.link} icon={card.icon} backgroundColor={card.backgroundColor} />
+                <ProfileCard link={card.link} icon={card.icon} backgroundColor={card.backgroundColor} disableHover={true}/>
                 <div className="profile-card-title">{card.title}</div>
               </CardColumn>
             ))}
