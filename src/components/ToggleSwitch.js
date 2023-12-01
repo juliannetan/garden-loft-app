@@ -8,8 +8,8 @@ const StyledSwitch = styled((props) => (
 ))(() => ({
   marginRight: "10px",
   position: "fixed",
-  top: "300px",
-  left: "300px",
+  top: "400px",
+  left: "500px",
     width: 200,
     height: 60,
     padding: 0,

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Typography } from "@mui/material";
 import Modal from "react-modal";
+import TelephoneIcon from "./icons/TelephoneIcon";
 
 const CallHelpButton = styled.button`
   margin-top: 50px;
@@ -74,9 +75,10 @@ const CallHelpButtonComponent = ({ onClick }) => {
 
   return (
     <BottomLeftButtonContainer>
-      <CallHelpButton id="top-right-button" primary onClick={openModal}>
-        <Typography variant="h5" fontWeight="700">
-          Call Help
+      <CallHelpButton id="top-right-button" primary onClick={openModal} >
+        <Typography variant="h5" fontWeight="700" style={{display: 'flex', alignItems: 'center' }}>
+          <TelephoneIcon size={40} />
+          <div style={{paddingLeft: "10px"}}>Call Help</div>
         </Typography>
       </CallHelpButton>
 

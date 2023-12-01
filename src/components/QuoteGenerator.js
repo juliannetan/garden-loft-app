@@ -39,9 +39,7 @@ const QuoteGenerator = () => {
   return (
     <ErrorBoundary>
       <div className="quote-overlay">
-        {" "}
-        <blockquote>
-          <Typography variant="h3.5" style={{color: "#2d3e5f"}}>{currentQuote}</Typography>
+        <blockquote>{currentQuote}
         </blockquote>
       </div>
     </ErrorBoundary>

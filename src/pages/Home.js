@@ -5,12 +5,13 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styled from 'styled-components';
 import ProfileCard from '../components/ProfileCard/ProfileCard';
-import { ContactsIcon, HealthIcon, LightbulbIcon, TvIcon, ServicesIcon, SettingsIcon, ScheduleIcon, ShortcutIcon } from '../components/icons';
+import { ContactsIcon, HealthIcon, TvIcon, ServicesIcon, SettingsIcon, ScheduleIcon, ShortcutIcon } from '../components/icons';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Navbar from "../components/Navbar";
 import CallHelpButtonComponent from "../components/CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
+import BroadcastIcon from '../components/icons/BroadcastIcon';
 
 const HomeContainer = styled.div`
   display: flex;
@@ -70,8 +71,8 @@ const CustomArrowButton = styled.div`
 
 const Home = () => {
   const cardData = [
-    { link: '/shortcut', icon: <ShortcutIcon />, title: 'Shortcut' },
-    { link: '/smart-loft', icon: <LightbulbIcon />, title: 'Smart Loft' },
+    { link: '/shortcut', icon: <ShortcutIcon />, title: 'Shortcuts' },
+    { link: '/smart-loft', icon: <BroadcastIcon />, title: 'Loft Controls' },
     { link: '/entertainment', icon: <TvIcon />, title: 'TV' },
     { link: '/schedule', icon: <ScheduleIcon />, title: 'Schedule' },
     { link: '/services', icon: <ServicesIcon />, title: 'Services' },
