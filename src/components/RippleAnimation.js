@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./RippleAnimation.css";
 import ErrorBoundary from "./ErrorBoundary";
+import { Typography } from "@mui/material";
 
 const RippleAnimation = () => {
   useEffect(() => {
@@ -36,7 +37,7 @@ const RippleAnimation = () => {
         <div className="circle small shade5"></div>
       </div>
       <div>
-        <button className="translucent-button">continue &gt;</button>
+        <button className="translucent-button"><Typography variant="h2" style={{color: "#2d3e5f"}}>continue &gt;</Typography></button>
       </div>
     </ErrorBoundary>
   );

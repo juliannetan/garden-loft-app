@@ -1,22 +1,18 @@
 // SmartLightCard.js
 import React, { useEffect, useState } from 'react';
-import Card from './Card/Card';
-import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 import { Typography } from '@mui/material';
 import ProfileCard from './ProfileCard/ProfileCard';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import { GardenLoftIcon } from './icons';
+import { LightbulbOutlineIcon, GardenLoftIcon } from './icons';
 
 const SmartLightCard = () => {
   const [socket, setSocket] = useState(null);
   const [manualToggle, setManualToggle] = useState(false);
   const [switchState, setSwitchState] = useState('off'); // Set an initial value
   const [incrimentalId, setIncrimentalId] = useState(1);
-
   useEffect(() => {
     // Create WebSocket connection
     const newSocket = new WebSocket("ws://homeassistant.local:8123/api/websocket");
-
     newSocket.addEventListener('open', () => {
       // Authenticate with Home Assistant
       newSocket.send(
@@ -49,7 +45,6 @@ const SmartLightCard = () => {
               // setManualToggle()
               // Do UI updates based on the state if needed
               // ...
-
               break;
             }
           }
@@ -64,8 +59,6 @@ const SmartLightCard = () => {
       }
       setManualToggle(false); // Make sure we know the button hasn't been pushed recently
     });
-
-
     newSocket.addEventListener('message', (event) => {
       try {
         const receivedData = JSON.parse(event.data);
@@ -83,24 +76,19 @@ const SmartLightCard = () => {
       setManualToggle(false);
     });
     
-
     newSocket.addEventListener('close', (event) => {
       console.log("WebSocket connection closed:", event);
     });
-
     setSocket(newSocket);
-
     return () => {
       newSocket.close();
     };
   }, []); // Run once on component mount
-
   const sendMessage = (message) => {
     if (socket) {
       socket.send(message);
     }
   };
-
   const getCurrentSwitchState = () => {
     const message = JSON.stringify({
       id: incrimentalId,
@@ -109,25 +97,21 @@ const SmartLightCard = () => {
     setIncrimentalId((prevId) => prevId + 1);
     sendMessage(message);
   };
-
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (!manualToggle) {
         getCurrentSwitchState();
       }
     }, 2000);
-
     // Clean up the interval on component unmount
     return () => {
       clearInterval(intervalId);
     };
   }, [manualToggle]); // Run when manualToggle changes
-
   // Call getCurrentSwitchState immediately when the page loads
   useEffect(() => {
     getCurrentSwitchState();
   }, []); // Run once on component mount
-
   const toggleSwitch = () => {
     setManualToggle(true);
     const message = JSON.stringify({
@@ -151,7 +135,7 @@ const SmartLightCard = () => {
           borderRadius={"200px"}
           onClick={toggleSwitch}
           backgroundColor={switchState === 'on' ? '#FFC100' : '#7F8181'}
-          icon={switchState === 'on' ? <LightbulbIcon onClick={toggleSwitch} /> : <LightbulbOutlinedIcon onClick={toggleSwitch} />} />
+          icon={switchState === 'on' ? <LightbulbIcon onClick={toggleSwitch} /> : <LightbulbOutlineIcon onClick={toggleSwitch} />} />
         <div className="profile-card-title">Floor Light</div>
         <Typography className="switch-state">{switchState}</Typography>
       </div></>
