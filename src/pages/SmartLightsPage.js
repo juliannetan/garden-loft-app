@@ -1,219 +1,184 @@
-// SmartLightsPage.js
-import React, { useEffect, useState } from "react";
-import ProfileCard from "../components/ProfileCard/ProfileCard";
-import "../components/ProfileCard/ProfileCard.css";
-import { LightbulbFilledIcon, LightbulbOutlineIcon } from "../components/icons";
-import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
-import LightbulbIcon from "@mui/icons-material/Lightbulb";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { LightbulbFilledIcon, LightbulbMultiple, LightbulbOutlineIcon } from '../components/icons';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Navbar from "../components/Navbar";
 import CallHelpButtonComponent from "../components/CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
 
-const SmartLightsPage = () => {
-  const [socket, setSocket] = useState(null);
-  const [manualToggle, setManualToggle] = useState(false);
-  const [switchState, setSwitchState] = useState("off"); // Set an initial value
-  const [incrimentalId, setIncrimentalId] = useState(1);
+const HomeContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
 
-  useEffect(() => {
-    // Create WebSocket connection
-    const newSocket = new WebSocket(
-      "ws://homeassistant.local:8123/api/websocket"
-    );
-
-    newSocket.addEventListener("open", () => {
-      // Authenticate with Home Assistant
-      newSocket.send(
-        JSON.stringify({
-          type: "auth",
-          access_token: "YOUR_ACCESS_TOKEN", // Replace with your access token
-        })
-      );
-      newSocket.send(
-        JSON.stringify({
-          id: 1,
-          type: "subscribe_events",
-          event_type: "state_changed",
-          entity_id: "switch.thing2", // Replace with your switch entity ID
-        })
-      );
-    });
-
-    newSocket.addEventListener("message", (event) => {
-      try {
-        const receivedData = JSON.parse(event.data);
-
-        if (receivedData.type === "auth_required") {
-          // Handle the auth_required message by sending the authentication token again
-          newSocket.send(
-            JSON.stringify({
-              type: "auth",
-              access_token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhNmE1NGFlODg3YmU0ZmUyYTdmMzZlNjgzZGY2ZTZjYSIsImlhdCI6MTcwMDU4NjAzMywiZXhwIjoyMDE1OTQ2MDMzfQ.lopph2KvRSjOM84VCa3TOwQlqjllkABa-k4bkhGO868", // Replace with your access token
-            })
-          );
-        } else if (
-          receivedData.type === "result" &&
-          Array.isArray(receivedData.result)
-        ) {
-          const resultArray = receivedData.result;
-          for (let i = 0; i < resultArray.length; i++) {
-            const currentEntry = resultArray[i];
-            if (currentEntry.entity_id === "switch.thing2") {
-              const newSwitchState = currentEntry.state;
-              setSwitchState(newSwitchState);
-              // setManualToggle()
-              // Do UI updates based on the state if needed
-              // ...
-              break;
-            }
-          }
-        } else {
-          console.warn(
-            "Received data does not match the expected format:",
-            receivedData
-          );
-        }
-      } catch (error) {
-        console.error("Error parsing JSON:", error);
-      }
-      setManualToggle(false); // Make sure we know the button hasn't been pushed recently
-    });
-
-    newSocket.addEventListener("message", (event) => {
-      try {
-        const receivedData = JSON.parse(event.data);
-
-        if (
-          receivedData.type === "event" &&
-          receivedData.event.event_type === "state_changed"
-        ) {
-          const entityState = receivedData.event.data.new_state;
-          if (entityState.entity_id === "switch.thing2") {
-            const newSwitchState = entityState.state;
-            setSwitchState(newSwitchState);
-          }
-        }
-      } catch (error) {
-        console.error("Error parsing JSON:", error);
-      }
-      setManualToggle(false);
-    });
-
-    newSocket.addEventListener("close", (event) => {
-      console.log("WebSocket connection closed:", event);
-    });
-
-    setSocket(newSocket);
-
-    return () => {
-      newSocket.close();
-    };
-  }, []); // Run once on component mount
-
-  const sendMessage = (message) => {
-    if (socket) {
-      socket.send(message);
+  div.slick-slide.slick-active.slick-center.slick-current {
+    .smart-lights-div {
+      transform: scale(1.3);
+      transition: transform 0.5s ease;
+      padding: 20px;
     }
-  };
-
-  const getCurrentSwitchState = () => {
-    const message = JSON.stringify({
-      id: incrimentalId,
-      type: "get_states",
-    });
-    setIncrimentalId((prevId) => prevId + 1);
-    sendMessage(message);
-  };
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      if (!manualToggle) {
-        getCurrentSwitchState();
+    .icon-container {
+      svg {
+        fill: #e9ebf8;
       }
-    }, 2000);
+    }
+  }
+`;
 
-    // Clean up the interval on component unmount
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [manualToggle]); // Run when manualToggle changes
+const CarouselWrapper = styled.div`
+  margin: 0 auto;
+  max-width: 1000px; /* Adjust the max-width as needed */
+`;
 
-  // Call getCurrentSwitchState immediately when the page loads
-  useEffect(() => {
-    getCurrentSwitchState();
-  }, []); // Run once on component mount
+const CardColumn = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+`;
 
-  const toggleSwitch = () => {
-    setManualToggle(true);
-    const message = JSON.stringify({
-      id: incrimentalId,
-      type: "call_service",
-      domain: "switch",
-      service: "Toggle",
-      service_data: {
-        entity_id: "switch.thing2", // Replace with your switch entity ID
-      },
-    });
-    setIncrimentalId((prevId) => prevId + 1);
-    sendMessage(message);
+const CardContent = styled.div`
+  .icon-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h3 {
+    margin: 10px 0 0;
+  }
+`;
+
+const RoundButton = styled.div`
+  width: 200px;
+  height: 200px;
+  background-color: ${props => (props.isOn ? '#FFC100' : '#7F8181')};
+  font-size: 16px;
+  padding: 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 200px;
+  margin: 50px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+
+`;
+
+
+const CustomArrowButton = styled.div`
+  width: 80px;
+  height: 80px;
+  background-color: #E8E8E4;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1; 
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  
+  &:active {
+    transform: translateY(-50%), scale(0.95); // Add a scaling effect for the pressed state
+    box-shadow: 0 0 0; // Remove box shadow for a pressed effect
+  }
+`;
+
+const lightsData = [
+  { id: 'floor-light', label: 'Floor', status: 'Off', icon: <LightbulbFilledIcon />,  },
+  { id: 'overhead-light', label: 'Overhead', status: 'Off', icon: <LightbulbFilledIcon /> },
+  { id: 'kitchen-light', label: 'Accent', status: 'Off', icon: <LightbulbFilledIcon /> },
+  { id: 'bedroom-light', label: 'Bedroom', status: 'Off', icon: <LightbulbOutlineIcon /> },
+
+];
+
+const SmartLightsPage = () => {
+  const [lights, setLights] = useState(lightsData);
+
+  const CustomNextArrow = ({ onClick }) => (
+    <CustomArrowButton onClick={onClick} style={{ right: -100 }}>
+      <ArrowForwardIosIcon fontSize='large'/>
+    </CustomArrowButton>
+  );
+
+  const CustomPrevArrow = ({ onClick }) => (
+    <CustomArrowButton onClick={onClick} style={{ left: -100 }}>
+      <ArrowBackIosNewIcon fontSize='large' />
+    </CustomArrowButton>
+  );
+
+  const settings = {
+    centerMode: true,
+    centerPadding: '0',
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    dots: true,
+    nextArrow: <CustomNextArrow />,
+    prevArrow: <CustomPrevArrow />
+  };
+
+
+  const handleLightClick = id => {
+    setLights(prevLights =>
+      prevLights.map(light =>
+        light.id === id ? { ...light, status: light.status === 'On' ? 'Off' : 'On' } : light
+      )
+    );
+  };
+
+  const handleAllOnOffClick = () => {
+    const allLightsOn = lights.every(light => light.status === 'On');
+
+    setLights(prevLights =>
+      prevLights.map(light => ({ ...light, status: allLightsOn ? 'Off' : 'On' }))
+    );
   };
 
   return (
-    <div className="home-container">
-      <Navbar />
-
-      <div className="profile-card-container">
-        <div className="profile-card-column">
-          <ProfileCard
-            borderRadius={"200px"}
-            onClick={toggleSwitch}
-            backgroundColor={switchState === "on" ? "#FFC100" : "#7F8181"}
-            icon={
-              switchState === "on" ? (
-                <LightbulbIcon />
-              ) : (
-                <LightbulbOutlinedIcon />
-              )
-            }
-          />
-          <div className="profile-card-title">Floor Light</div>
-        </div>
-
-        <div className="profile-card-column">
-          <ProfileCard
-            borderRadius={"200px"}
-            link={"/smart-light"}
-            backgroundColor={switchState === "on" ? "#FFC100" : "#7F8181"}
-            icon={
-              switchState === "on" ? (
-                <LightbulbIcon />
-              ) : (
-                <LightbulbOutlineIcon />
-              )
-            }
-          />
-          <div className="profile-card-title">Overhead Light</div>
-        </div>
-
-        <div className="profile-card-column">
-          <ProfileCard
-            borderRadius={"200px"}
-            backgroundColor={switchState === "off" ? "#FFC100" : "#7F8181"}
-            icon={
-              switchState === "off" ? (
-                <LightbulbFilledIcon />
-              ) : (
-                <LightbulbOutlineIcon />
-              )
-            }
-          />
-          <div className="profile-card-title">Accent Light</div>
-          <LocationIndicator currentPage={"lights control"} />
-          <CallHelpButtonComponent />
-        </div>
-      </div>
-    </div>
+    <>
+    <Navbar />
+    <HomeContainer>
+        <CarouselWrapper>
+      <Slider {...settings}>
+        <CardColumn>
+          <RoundButton className="smart-lights-div" isOn={lights.every(light => light.status === 'On')} onClick={handleAllOnOffClick}>
+            <CardContent>
+              {lights.every(light => light.status === 'On') ? <LightbulbMultiple color={'#E9EBF8'} /> : <LightbulbMultiple />}
+            </CardContent>
+          </RoundButton>
+          <div className="profile-card-title">All Lights</div>
+        </CardColumn>
+        {lights.map(light => (
+          <CardColumn key={light.id}>
+            <RoundButton className="smart-lights-div" isOn={light.status === 'On'} onClick={() => handleLightClick(light.id)}>
+              <CardContent>
+                {light.status === 'On' ? <LightbulbFilledIcon /> : <LightbulbOutlineIcon />}
+              </CardContent>
+            </RoundButton>
+            <div className="profile-card-title">{light.label}</div>
+          </CardColumn>
+        ))}
+      </Slider>
+      </CarouselWrapper>
+      <LocationIndicator currentPage={"lights control"} />
+      <CallHelpButtonComponent />
+      </HomeContainer>
+    </>
   );
 };
 
