@@ -97,8 +97,8 @@ const CallHelpButtonComponent = ({ onClick }) => {
             color: "white",
             fontSize: "40px",
             border: "none",
-            width: "70%",
-            height: "50%",
+            width: "75%",
+            height: "65%",
           },
           overlay: {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -106,17 +106,17 @@ const CallHelpButtonComponent = ({ onClick }) => {
           },
         }}
       >
-        <Typography variant="h3" fontWeight="700" mb={4} color="#2D3E5F">
+        <Typography variant="h2" fontWeight="700" mb={6} color="#2D3E5F">
           SOS Request
         </Typography>
-        <Typography variant="h4" mb={4} color="#2D3E5F">
+        <Typography variant="h3" mb={10} color="#2D3E5F">
           Call 911 for medical emergency assistance
-          <br />
-          <br />
         </Typography>
+        <Typography mb={5} >
         <ModalButton onClick={handleConfirm}>
           Yes, I need help
         </ModalButton>
+        </Typography>
         <ModalButton style={{background: 'none', textDecoration: 'underline'}} onClick={closeModal}>
           No, I didn't mean to
         </ModalButton>
@@ -139,8 +139,8 @@ const CallHelpButtonComponent = ({ onClick }) => {
             color: "white",
             fontSize: "40px",
             border: "none",
-            width: "70%",
-            height: "50%",
+            width: "75%",
+            height: "65%",
           },
           overlay: {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -149,17 +149,19 @@ const CallHelpButtonComponent = ({ onClick }) => {
           
         }}
       >
-        <Typography variant="h3" fontWeight="700" mb={4} color="#2D3E5F">
+        <Typography variant="h2" fontWeight="700" mb={4} color="#2D3E5F">
           SOS Request Sent
         </Typography>
-        <Typography variant="h4" mb={4} color="#2D3E5F">
-          Help is on the way. Your family has been notified.
-          <br />
-          <br />
-
-          Now take a deep breath.
+        <Typography variant="h4" mb={2} color="#2D3E5F">
+          Help is on the way
         </Typography>
-        <ModalButton onClick={closeNestedModal}>OKAY</ModalButton>
+        <Typography variant="h4" mb={8} color="#2D3E5F">
+          Your family has been notified
+        </Typography>
+        <Typography variant="h4" mb={4} color="#2D3E5F">
+          Now take a deep breath
+        </Typography>
+        <ModalButton onClick={closeNestedModal}>Okay</ModalButton>
       </Modal>
     </BottomLeftButtonContainer>
   );
