@@ -1,0 +1,41 @@
+/* Navbar.css */
+
+.nav-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: #fff; /* Adjust the button text color as needed */
+  border-radius: 50px; /* Make the button round */
+  box-shadow: 0 0 10px rgba(0, 247, 255, 0.8);
+  transition: box-shadow 0.3s ease; /* Add a smooth transition for the glow effect */
+  transition: transform 0.3s ease;
+
+  &:hover {
+    color: #00f7ff; /* Adjust the button text color on hover as needed */
+    box-shadow: 0 0 20px rgba(0, 247, 255, 0.8); /* Add a stronger glow effect on hover */
+    transform: scale(1.1);
+  }
+
+  .icon {
+    font-size: 0.5rem;
+    margin-bottom: 8px;
+    color: #00f7ff;
+  }
+
+  .label {
+    margin-top: 5px; /* Adjust the spacing between the icon and label */
+    color: #00f7ff;
+    font-size: 20px;
+  }
+}
+
+.Drawer {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Add this rule to control the initial state of the Drawer */
+.Drawer.closed {
+  opacity: 0;
+  transform: translateY(-100%);
+}

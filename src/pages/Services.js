@@ -1,11 +1,14 @@
 // Home.js
-import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import styled from 'styled-components';
-import ProfileCard from '../components/ProfileCard/ProfileCard';
-import { GardenLoftIcon, GroceryIcon, HaircutIcon, DryCleaningIcon } from '../components/icons';
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import styled from "styled-components";
+import ProfileCard from "../components/ProfileCard/ProfileCard";
+import LocationIndicator from "../components/LocationIndicator";
+import { GroceryIcon, HaircutIcon, DryCleaningIcon } from "../components/icons";
+import Navbar from "../components/Navbar";
+import CallHelpButtonComponent from "../components/CallHelpButton";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -28,12 +31,11 @@ const CardColumn = styled.div`
   padding: 0 20px; /* Adjust the padding to increase or decrease spacing */
 `;
 
-
 const Services = () => {
   const cardData = [
-    { link: '/grocery', icon: <GroceryIcon />, title: 'Grocery' },
-    { link: '/haircut', icon: <HaircutIcon />, title: 'Haircut' },
-    { link: '/drycleaning', icon: <DryCleaningIcon />, title: 'Dry Cleaning' }
+    { link: "/grocery", icon: <GroceryIcon />, title: "Grocery" },
+    { link: "/haircut", icon: <HaircutIcon />, title: "Haircut" },
+    { link: "/drycleaning", icon: <DryCleaningIcon />, title: "Dry Cleaning" },
     // Add more cards here
   ];
 
@@ -46,22 +48,27 @@ const Services = () => {
 
   const sliderRef = React.createRef();
 
-
   return (
     <>
-      <GardenLoftIcon />
+      <Navbar />
       <HomeContainer>
         <CarouselWrapper>
           <Slider ref={sliderRef} {...settings}>
             {cardData.map((card, index) => (
               <CardColumn key={index}>
-                <ProfileCard link={card.link} icon={card.icon} backgroundColor={card.backgroundColor} />
+                <ProfileCard
+                  link={card.link}
+                  icon={card.icon}
+                  backgroundColor={card.backgroundColor}
+                />
                 <div className="profile-card-title">{card.title}</div>
               </CardColumn>
             ))}
           </Slider>
         </CarouselWrapper>
       </HomeContainer>
+      <LocationIndicator currentPage={"services"} />
+      <CallHelpButtonComponent />
     </>
   );
 };

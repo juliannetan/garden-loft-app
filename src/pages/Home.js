@@ -1,11 +1,21 @@
 // Home.js
-import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import styled from 'styled-components';
-import ProfileCard from '../components/ProfileCard/ProfileCard';
-import { ContactsIcon, GardenLoftIcon, HealthIcon, LightbulbIcon, TvIcon, ServicesIcon, ScheduleIcon } from '../components/icons';
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import styled from "styled-components";
+import ProfileCard from "../components/ProfileCard/ProfileCard";
+import LocationIndicator from "../components/LocationIndicator";
+import {
+  ContactsIcon,
+  HealthIcon,
+  LightbulbIcon,
+  TvIcon,
+  ServicesIcon,
+  ScheduleIcon,
+} from "../components/icons";
+import Navbar from "../components/Navbar";
+import CallHelpButtonComponent from "../components/CallHelpButton";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -28,15 +38,14 @@ const CardColumn = styled.div`
   padding: 0 20px; /* Adjust the padding to increase or decrease spacing */
 `;
 
-
 const Home = () => {
   const cardData = [
-    { link: '/smart-loft', icon: <LightbulbIcon />, title: 'Smart Loft' },
-    { link: '/entertainment', icon: <TvIcon />, title: 'Entertainment' },
-    { link: '/schedule', icon: <ScheduleIcon />, title: 'Schedule' },
-    { link: '/services', icon: <ServicesIcon />, title: 'Services' },
-    { link: '/my-contacts', icon: <ContactsIcon />, title: 'My Contacts' },
-    { link: '/my-health', icon: <HealthIcon />, title: 'My Health' },
+    { link: "/smart-loft", icon: <LightbulbIcon />, title: "Smart Loft" },
+    { link: "/entertainment", icon: <TvIcon />, title: "Entertainment" },
+    { link: "/schedule", icon: <ScheduleIcon />, title: "Schedule" },
+    { link: "/services", icon: <ServicesIcon />, title: "Services" },
+    { link: "/my-contacts", icon: <ContactsIcon />, title: "My Contacts" },
+    { link: "/my-health", icon: <HealthIcon />, title: "My Health" },
     // Add more cards here
   ];
 
@@ -49,22 +58,28 @@ const Home = () => {
 
   const sliderRef = React.createRef();
 
-
   return (
     <>
-      <GardenLoftIcon />
+      <Navbar />
+      {/* <PageTitle title="Home" /> */}
       <HomeContainer>
         <CarouselWrapper>
           <Slider ref={sliderRef} {...settings}>
             {cardData.map((card, index) => (
               <CardColumn key={index}>
-                <ProfileCard link={card.link} icon={card.icon} backgroundColor={card.backgroundColor} />
+                <ProfileCard
+                  link={card.link}
+                  icon={card.icon}
+                  backgroundColor={card.backgroundColor}
+                />
                 <div className="profile-card-title">{card.title}</div>
               </CardColumn>
             ))}
           </Slider>
         </CarouselWrapper>
       </HomeContainer>
+      <LocationIndicator currentPage={"home"} />
+      <CallHelpButtonComponent />
     </>
   );
 };

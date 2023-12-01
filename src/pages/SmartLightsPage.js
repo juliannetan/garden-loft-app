@@ -1,22 +1,27 @@
 // SmartLightsPage.js
-import React, { useEffect, useState } from 'react';
-import ProfileCard from '../components/ProfileCard/ProfileCard';
-import '../components/ProfileCard/ProfileCard.css';
-import { LightbulbFilledIcon, LightbulbOutlineIcon, GardenLoftIcon } from '../components/icons';
-import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
-import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import React, { useEffect, useState } from "react";
+import ProfileCard from "../components/ProfileCard/ProfileCard";
+import "../components/ProfileCard/ProfileCard.css";
+import { LightbulbFilledIcon, LightbulbOutlineIcon } from "../components/icons";
+import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
+import LightbulbIcon from "@mui/icons-material/Lightbulb";
+import Navbar from "../components/Navbar";
+import CallHelpButtonComponent from "../components/CallHelpButton";
+import LocationIndicator from "../components/LocationIndicator";
 
 const SmartLightsPage = () => {
   const [socket, setSocket] = useState(null);
   const [manualToggle, setManualToggle] = useState(false);
-  const [switchState, setSwitchState] = useState('off'); // Set an initial value
+  const [switchState, setSwitchState] = useState("off"); // Set an initial value
   const [incrimentalId, setIncrimentalId] = useState(1);
 
   useEffect(() => {
     // Create WebSocket connection
-    const newSocket = new WebSocket("ws://homeassistant.local:8123/api/websocket");
+    const newSocket = new WebSocket(
+      "ws://homeassistant.local:8123/api/websocket"
+    );
 
-    newSocket.addEventListener('open', () => {
+    newSocket.addEventListener("open", () => {
       // Authenticate with Home Assistant
       newSocket.send(
         JSON.stringify({
@@ -34,7 +39,7 @@ const SmartLightsPage = () => {
       );
     });
 
-    newSocket.addEventListener('message', (event) => {
+    newSocket.addEventListener("message", (event) => {
       try {
         const receivedData = JSON.parse(event.data);
 
@@ -43,10 +48,14 @@ const SmartLightsPage = () => {
           newSocket.send(
             JSON.stringify({
               type: "auth",
-              access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhNmE1NGFlODg3YmU0ZmUyYTdmMzZlNjgzZGY2ZTZjYSIsImlhdCI6MTcwMDU4NjAzMywiZXhwIjoyMDE1OTQ2MDMzfQ.lopph2KvRSjOM84VCa3TOwQlqjllkABa-k4bkhGO868", // Replace with your access token
+              access_token:
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhNmE1NGFlODg3YmU0ZmUyYTdmMzZlNjgzZGY2ZTZjYSIsImlhdCI6MTcwMDU4NjAzMywiZXhwIjoyMDE1OTQ2MDMzfQ.lopph2KvRSjOM84VCa3TOwQlqjllkABa-k4bkhGO868", // Replace with your access token
             })
           );
-        } else if (receivedData.type === "result" && Array.isArray(receivedData.result)) {
+        } else if (
+          receivedData.type === "result" &&
+          Array.isArray(receivedData.result)
+        ) {
           const resultArray = receivedData.result;
           for (let i = 0; i < resultArray.length; i++) {
             const currentEntry = resultArray[i];
@@ -71,11 +80,14 @@ const SmartLightsPage = () => {
       setManualToggle(false); // Make sure we know the button hasn't been pushed recently
     });
 
-    newSocket.addEventListener('message', (event) => {
+    newSocket.addEventListener("message", (event) => {
       try {
         const receivedData = JSON.parse(event.data);
 
-        if (receivedData.type === "event" && receivedData.event.event_type === "state_changed") {
+        if (
+          receivedData.type === "event" &&
+          receivedData.event.event_type === "state_changed"
+        ) {
           const entityState = receivedData.event.data.new_state;
           if (entityState.entity_id === "switch.thing2") {
             const newSwitchState = entityState.state;
@@ -88,7 +100,7 @@ const SmartLightsPage = () => {
       setManualToggle(false);
     });
 
-    newSocket.addEventListener('close', (event) => {
+    newSocket.addEventListener("close", (event) => {
       console.log("WebSocket connection closed:", event);
     });
 
@@ -149,15 +161,21 @@ const SmartLightsPage = () => {
 
   return (
     <div className="home-container">
-      <GardenLoftIcon />
+      <Navbar />
 
       <div className="profile-card-container">
         <div className="profile-card-column">
           <ProfileCard
             borderRadius={"200px"}
             onClick={toggleSwitch}
-            backgroundColor={switchState === 'on' ? '#FFC100' : '#7F8181'}
-            icon={switchState === 'on' ? <LightbulbIcon /> : <LightbulbOutlinedIcon />}
+            backgroundColor={switchState === "on" ? "#FFC100" : "#7F8181"}
+            icon={
+              switchState === "on" ? (
+                <LightbulbIcon />
+              ) : (
+                <LightbulbOutlinedIcon />
+              )
+            }
           />
           <div className="profile-card-title">Floor Light</div>
         </div>
@@ -166,8 +184,14 @@ const SmartLightsPage = () => {
           <ProfileCard
             borderRadius={"200px"}
             link={"/smart-light"}
-            backgroundColor={switchState === 'on' ? '#FFC100' : '#7F8181'}
-            icon={switchState === 'on' ? <LightbulbIcon /> : <LightbulbOutlineIcon />}
+            backgroundColor={switchState === "on" ? "#FFC100" : "#7F8181"}
+            icon={
+              switchState === "on" ? (
+                <LightbulbIcon />
+              ) : (
+                <LightbulbOutlineIcon />
+              )
+            }
           />
           <div className="profile-card-title">Overhead Light</div>
         </div>
@@ -175,10 +199,18 @@ const SmartLightsPage = () => {
         <div className="profile-card-column">
           <ProfileCard
             borderRadius={"200px"}
-            backgroundColor={switchState === 'off' ? '#FFC100' : '#7F8181'}
-            icon={switchState === 'off' ? <LightbulbFilledIcon /> : <LightbulbOutlineIcon />}
+            backgroundColor={switchState === "off" ? "#FFC100" : "#7F8181"}
+            icon={
+              switchState === "off" ? (
+                <LightbulbFilledIcon />
+              ) : (
+                <LightbulbOutlineIcon />
+              )
+            }
           />
           <div className="profile-card-title">Accent Light</div>
+          <LocationIndicator currentPage={"lights control"} />
+          <CallHelpButtonComponent />
         </div>
       </div>
     </div>
