@@ -6,15 +6,19 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 const StyledSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
 ))(() => ({
-    width: 100,
-    height: 35,
+  marginRight: "10px",
+  position: "fixed",
+  top: "300px",
+  left: "300px",
+    width: 200,
+    height: 60,
     padding: 0,
   "& .MuiSwitch-switchBase": {
     padding: 0,
     margin: 2,
     transitionDuration: "300ms",
     "&.Mui-checked": {
-      transform: "translateX(65px)",
+      transform: "translateX(140px)",
       color: "#fff",
       "& + .MuiSwitch-track": {
         backgroundColor: "#65C466",
@@ -38,8 +42,8 @@ const StyledSwitch = styled((props) => (
   },
   "& .MuiSwitch-thumb": {
     boxSizing: "border-box",
-    width: 30,
-    height: 30,
+    width: 55,
+    height: 55,
   },
   "& .MuiSwitch-track": {
     borderRadius: "50px",
@@ -56,19 +60,21 @@ const StyledSwitch = styled((props) => (
       top: "50%",
       left: "40%",
       transform: "translate(-50%, -50%)",
-      color: "#2D3E5F"
+      color: "#2D3E5F",
+      fontSize: "42px"
     },
   },
   "& .MuiSwitch-switchBase:not(.Mui-checked) + .MuiSwitch-track": {
     background: "linear-gradient(180deg, rgba(255, 35, 74, 0.504) 16.67%, rgba(244, 140, 6, 0.402) 100%)",
     position: "relative",
     "&::before": {
-      content: '"WARM"',
+      content: '"HEAT"',
       position: "absolute",
       top: "50%",
       right: "-10%",
       transform: "translate(-50%, -50%)",
-      color: "#2D3E5F"
+      color: "#2D3E5F",
+      fontSize: "42px"
     },
   },
 }));
@@ -82,7 +88,7 @@ const ToggleSwitch = ({ handleSwitchToggle }) => {
   };
 
    return (
-    <FormControlLabel control={<StyledSwitch sx={{ m: 1 }} checked={isChecked} onChange={handleChange} />} />
+      <FormControlLabel control={<StyledSwitch sx={{ m: 1 }} checked={isChecked} onChange={handleChange} />} />
   );
 };
 

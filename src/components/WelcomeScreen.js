@@ -1,5 +1,5 @@
 // WelcomeScreen.js
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components"; // Import styled-components
 import ErrorBoundary from "./ErrorBoundary";
@@ -27,15 +27,17 @@ const WelcomeContainer = styled.div`
 const WelcomeScreen = () => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    // Navigate to the quotes page when clicked
-    navigate("/quotes-page"); // Update with your actual quotes page route
-  };
+  useEffect(() => {
+      const timeoutId = setTimeout(() => {
+        navigate('/quotes-page');
+      }, 4000); 
+      return () => clearTimeout(timeoutId);
+  }, [navigate]);
 
   return (
     <ErrorBoundary>
       <GardenLoftIcon />
-      <WelcomeContainer onClick={handleClick}>
+      <WelcomeContainer>
       <Typography fontWeight={400} variant='h1' color='#2D3E5F'>Hello Elizabeth</Typography>
         <br />
         <Typography fontWeight={100} variant='h2' color='#2D3E5F'>welcome back</Typography>

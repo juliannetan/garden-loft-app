@@ -317,6 +317,7 @@ const CenteredIcon = styled(Link)`
     margin-left: 175px;
     font-size: 2.5rem;
     font-weight: bold;
+    color: #2D3E5F;
   }
 `;
 

@@ -9,6 +9,7 @@ import SmartLightsPage from './pages/SmartLightsPage';
 import QuotesPage from './pages/QuotesPage';
 import WelcomeScreen from './components/WelcomeScreen';
 import SmartLightCard from './components/SmartLightCard';
+import AnimationPage from './pages/AnimationPage';
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
         <Route path="/smart-loft" element={<SmartLoftPage />} />
         <Route path="/smart-lights" element={<SmartLightsPage />} />
         <Route path="/quotes-page" element={<QuotesPage />} />
-        <Route path="/" element={<WelcomeScreen />} />
+        <Route path="/welcome" element={<WelcomeScreen />} />
+        <Route path="/" element={<AnimationPage />} />
       </Routes>
     </Router>
   );

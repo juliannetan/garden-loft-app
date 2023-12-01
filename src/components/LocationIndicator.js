@@ -12,7 +12,7 @@ const LocationIndicator = ({ currentPage }) => {
     font-size: 30px;
     font-weight: 400px;
     // font-family: "Montserrat", sans-serif;
-    color: #333; // Adjust the color as needed
+    color: #2D3E5F;
     margin: 30px; // Adjust margin as needed
   `;
 

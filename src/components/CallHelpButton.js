@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Typography } from "@mui/material"; // Import your Typography component
+import { Typography } from "@mui/material";
+import Modal from "react-modal";
 
 const CallHelpButton = styled.button`
   margin-top: 50px;
@@ -27,51 +28,139 @@ const BottomLeftButtonContainer = styled.div`
   z-index: 999;
 `;
 
-const handleCallHelpButtonComponent = async () => {
-  const shouldInitiateCall = window.confirm(
-    "Are you sure you want to initiate the call?"
-  );
-  if (shouldInitiateCall) {
+
+const ModalButton = styled.button`
+  background-color: #59acce;
+  color: #2d3e5f;
+  border: none;
+  border-radius: 25px;
+  margin: 0 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 40px;
+`;
+
+const CallHelpButtonComponent = ({ onClick }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isNestedModalOpen, setNestedModalOpen] = useState(false);
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
+
+  const openNestedModal = () => {
+    setModalOpen(false);
+    setNestedModalOpen(true);
+  };
+
+  const closeNestedModal = () => setNestedModalOpen(false);
+
+  const handleCallHelpButtonComponent = async () => {
     try {
       await fetch("http://localhost:3001/call-help"); // Adjust the server URL
       console.log("Call initiated!");
     } catch (error) {
       console.error("Error initiating the call:", error);
     }
-  }
-};
+  };
 
-const ConfirmationPopup = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: darkgrey;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  color: white;
-  font-size: 40px; /* Adjust the font size as needed */
-`;
-
-const CallHelpButtonComponent = ({ onClick }) => {
-  const handleClick = () => {
-    const shouldUseCustomClick =
-      onClick && window.confirm("Are you sure you want to initiate the call?");
-    if (shouldUseCustomClick) {
-      onClick();
-    } else {
+  const handleConfirm = async () => {
+    closeModal();
+    openNestedModal();
+    const shouldInitiateCall = true;
+    if (shouldInitiateCall) {
       handleCallHelpButtonComponent();
     }
   };
 
   return (
     <BottomLeftButtonContainer>
-      <CallHelpButton id="top-right-button" primary onClick={handleClick}>
+      <CallHelpButton id="top-right-button" primary onClick={openModal}>
         <Typography variant="h5" fontWeight="700">
           Call Help
         </Typography>
       </CallHelpButton>
+
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Confirmation Modal"
+        style={{
+          content: {
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            backgroundColor: "#E9EBF8",
+            opacity: 0.9,
+            padding: "20px",
+            borderRadius: "25px",
+            textAlign: "center",
+            color: "white",
+            fontSize: "40px",
+            border: "none",
+            width: "70%",
+            height: "50%",
+          },
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            zIndex: 1000,
+          },
+        }}
+      >
+        <Typography variant="h3" fontWeight="700" mb={4} color="#2D3E5F">
+          SOS Request
+        </Typography>
+        <Typography variant="h4" mb={4} color="#2D3E5F">
+          Call 911 for medical emergency assistance
+          <br />
+          <br />
+        </Typography>
+        <ModalButton onClick={handleConfirm}>
+          Yes, I need help
+        </ModalButton>
+        <ModalButton style={{background: 'none', textDecoration: 'underline'}} onClick={closeModal}>
+          No, I didn't mean to
+        </ModalButton>
+      </Modal>
+      
+      <Modal
+        isOpen={isNestedModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Nested Modal"
+        style={{
+          content: {
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            backgroundColor: "#E9EBF8",
+            opacity: 0.9,
+            padding: "20px",
+            borderRadius: "25px",
+            textAlign: "center",
+            color: "white",
+            fontSize: "40px",
+            border: "none",
+            width: "70%",
+            height: "50%",
+          },
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            zIndex: 1000,
+          },
+          
+        }}
+      >
+        <Typography variant="h3" fontWeight="700" mb={4} color="#2D3E5F">
+          SOS Request Sent
+        </Typography>
+        <Typography variant="h4" mb={4} color="#2D3E5F">
+          Help is on the way. Your family has been notified.
+          <br />
+          <br />
+
+          Now take a deep breath.
+        </Typography>
+        <ModalButton onClick={closeNestedModal}>OKAY</ModalButton>
+      </Modal>
     </BottomLeftButtonContainer>
   );
 };

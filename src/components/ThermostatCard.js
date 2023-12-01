@@ -247,7 +247,7 @@ const ThermostatCard = () => {
           <Circle isSwitchOn={isSwitchOn}>
             <CoolText>
               <SnowflakeIcon />
-              <Typography variant="h5" fontWeight="550">{isSwitchOn ? 'Cool' : 'Warm'}</Typography>
+              <Typography variant="h5" fontWeight="550">{isSwitchOn ? 'Cool' : 'Heat'}</Typography>
             </CoolText>
             <Temperature variant="h1">{temperature}°C</Temperature>
           </Circle>
