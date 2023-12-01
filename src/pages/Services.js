@@ -25,7 +25,6 @@ const CardColumn = styled.div`
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  padding: 0 20px; /* Adjust the padding to increase or decrease spacing */
 `;
 
 

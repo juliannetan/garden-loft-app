@@ -19,6 +19,9 @@ export { default as TeaIcon } from './TeaIcon';
 export { default as DryCleaningIcon } from './DryCleaningIcon';
 export { default as HaircutIcon } from './HaircutIcon';
 export { default as GroceryIcon } from './GroceryIcon';
+export { default as ShortcutIcon } from './ShortcutIcon';
+export { default as SettingsIcon } from './SettingsIcon';
+export { default as LightbulbMultiple } from './LightbulbMultiple';
 
 
 
