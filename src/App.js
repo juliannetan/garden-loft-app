@@ -10,6 +10,7 @@ import QuotesPage from './pages/QuotesPage';
 import WelcomeScreen from './components/WelcomeScreen';
 import SmartLightCard from './components/SmartLightCard';
 import AnimationPage from './pages/AnimationPage';
+import TVRemoteControlHandler from './components/TvRemoteControlHandler';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/welcome" element={<WelcomeScreen />} />
         <Route path="/" element={<AnimationPage />} />
       </Routes>
+      <TVRemoteControlHandler />
     </Router>
   );
 }

@@ -59,7 +59,7 @@ const CardContent = styled.div`
 const RoundButton = styled.div`
   width: 200px;
   height: 200px;
-  background-color: ${props => (props.isOn ? '#FFC100' : '#7F8181')};
+  background-color: ${props => (props.$isOn ? '#FFC100' : '#7F8181')};
   font-size: 16px;
   padding: 20px;
   border: none;
@@ -156,7 +156,7 @@ const SmartLightsPage = () => {
         <CarouselWrapper>
       <Slider {...settings}>
         <CardColumn>
-          <RoundButton className="smart-lights-div" isOn={lights.every(light => light.status === 'On')} onClick={handleAllOnOffClick}>
+          <RoundButton className="smart-lights-div" $isOn={lights.every(light => light.status === 'On')} onClick={handleAllOnOffClick}>
             <CardContent>
               {lights.every(light => light.status === 'On') ? <LightbulbMultiple color={'#E9EBF8'} /> : <LightbulbMultiple />}
             </CardContent>
@@ -165,7 +165,7 @@ const SmartLightsPage = () => {
         </CardColumn>
         {lights.map(light => (
           <CardColumn key={light.id}>
-            <RoundButton className="smart-lights-div" isOn={light.status === 'On'} onClick={() => handleLightClick(light.id)}>
+            <RoundButton className="smart-lights-div" $isOn={light.status === 'On'} onClick={() => handleLightClick(light.id)}>
               <CardContent>
                 {light.status === 'On' ? <LightbulbFilledIcon /> : <LightbulbOutlineIcon />}
               </CardContent>
