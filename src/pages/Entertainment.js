@@ -5,9 +5,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
-import { FilmIcon, PeopleIcon, MusicIcon } from "../components/icons";
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import {
+  FilmIcon,
+  PeopleIcon,
+  MusicIcon,
+  GardenLoftIcon,
+} from "../components/icons";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Navbar from "../components/Navbar";
 import CallHelpButtonComponent from "../components/CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
@@ -35,7 +40,7 @@ const CardColumn = styled.div`
 const CustomArrowButton = styled.div`
   width: 80px;
   height: 80px;
-  background-color: #E8E8E4;
+  background-color: #e8e8e4;
   border-radius: 25px;
   display: flex;
   align-items: center;
@@ -44,9 +49,9 @@ const CustomArrowButton = styled.div`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 1; 
+  z-index: 1;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
-  
+
   &:active {
     transform: translateY(-50%), scale(0.95); // Add a scaling effect for the pressed state
     box-shadow: 0 0 0; // Remove box shadow for a pressed effect
@@ -63,13 +68,13 @@ const Entertainment = () => {
 
   const CustomNextArrow = ({ onClick }) => (
     <CustomArrowButton onClick={onClick} style={{ right: -100 }}>
-      <ArrowForwardIosIcon fontSize='large'/>
+      <ArrowForwardIosIcon fontSize="large" />
     </CustomArrowButton>
   );
 
   const CustomPrevArrow = ({ onClick }) => (
     <CustomArrowButton onClick={onClick} style={{ left: -100 }}>
-      <ArrowBackIosNewIcon fontSize='large' />
+      <ArrowBackIosNewIcon fontSize="large" />
     </CustomArrowButton>
   );
 
@@ -80,14 +85,14 @@ const Entertainment = () => {
     slidesToScroll: 1,
     dots: true,
     nextArrow: <CustomNextArrow />,
-    prevArrow: <CustomPrevArrow />
+    prevArrow: <CustomPrevArrow />,
   };
-
 
   const sliderRef = React.createRef();
 
   return (
     <>
+      <GardenLoftIcon />
       <Navbar />
       <HomeContainer>
         <CarouselWrapper>
@@ -105,7 +110,7 @@ const Entertainment = () => {
           </Slider>
         </CarouselWrapper>
       </HomeContainer>
-      <LocationIndicator currentPage={"entertainment"} />
+      <LocationIndicator currentPage={"TV+entertainment"} />
       <CallHelpButtonComponent />
     </>
   );

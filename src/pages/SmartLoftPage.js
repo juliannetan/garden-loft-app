@@ -1,12 +1,17 @@
 // SmartLoftPage.js
-import React from 'react';
-import ProfileCard from '../components/ProfileCard/ProfileCard';
-import '../components/ProfileCard/ProfileCard.css';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import styled from 'styled-components';
-import { DoorIcon, LampIcon, ThermostatIcon } from '../components/icons';
+import React from "react";
+import ProfileCard from "../components/ProfileCard/ProfileCard";
+import "../components/ProfileCard/ProfileCard.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import styled from "styled-components";
+import {
+  DoorIcon,
+  GardenLoftIcon,
+  LampIcon,
+  ThermostatIcon,
+} from "../components/icons";
 import Navbar from "../components/Navbar";
 import CallHelpButtonComponent from "../components/CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
@@ -44,15 +49,15 @@ const SmartLoftPage = () => {
   const sliderRef = React.createRef();
 
   const cardData = [
-    { link: '/smart-lights', icon: <LampIcon />, title: 'Smart Lights' },
-    { link: '/thermostat', icon: <ThermostatIcon />, title: 'Thermostat' },
-    { link: '/smart-home-settings', icon: <DoorIcon />, title: 'Door Lock' }
+    { link: "/smart-lights", icon: <LampIcon />, title: "Smart Lights" },
+    { link: "/thermostat", icon: <ThermostatIcon />, title: "Thermostat" },
+    { link: "/smart-home-settings", icon: <DoorIcon />, title: "Door Lock" },
     // Add more cards here
   ];
 
-
   return (
     <>
+      <GardenLoftIcon />
       <Navbar />
       <PageTitle title="Loft Controls" />
       <HomeContainer>
@@ -60,7 +65,11 @@ const SmartLoftPage = () => {
           <Slider ref={sliderRef} {...settings}>
             {cardData.map((card, index) => (
               <CardColumn key={index}>
-                <ProfileCard link={card.link} icon={card.icon} backgroundColor={card.backgroundColor} />
+                <ProfileCard
+                  link={card.link}
+                  icon={card.icon}
+                  backgroundColor={card.backgroundColor}
+                />
                 <div className="profile-card-title">{card.title}</div>
               </CardColumn>
             ))}
