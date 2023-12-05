@@ -291,10 +291,10 @@ const ThermostatCard = () => {
           <Buttons>
             <CustomPrevArrow  />
             <CustomNextArrow />
-            <IconButton className="button" onClick={increaseTemperature} style={{ right: '400px', position: 'fixed', top: '37.5%'}}>
+            <IconButton className="button" onClick={increaseTemperature} style={{  right: '400px', position: 'fixed', marginTop: '122px'}}>
               <AddIcon fontSize="large" fontWeight="700" />
             </IconButton>
-            <IconButton className="button" onClick={decreaseTemperature} style={{ left: '400px', position: 'fixed', top: '37.5%' }}>
+            <IconButton className="button" onClick={decreaseTemperature} style={{ left: '400px', position: 'fixed', marginTop: '122px' }}>
               <RemoveIcon fontSize="large" fontWeight="700" />
           </IconButton>
           </Buttons>
