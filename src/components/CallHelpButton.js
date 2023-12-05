@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Typography } from "@mui/material";
 import Modal from "react-modal";
@@ -55,6 +55,13 @@ const CallHelpButtonComponent = ({ onClick }) => {
 
   const closeNestedModal = () => setNestedModalOpen(false);
 
+  useEffect(() => {
+    return () => {
+      // Cleanup when the component unmounts
+      Modal.setAppElement(null);
+    };
+  }, []);
+
   const handleCallHelpButtonComponent = async () => {
     try {
       await fetch("http://localhost:3001/call-help"); // Adjust the server URL
@@ -75,8 +82,8 @@ const CallHelpButtonComponent = ({ onClick }) => {
 
   return (
     <BottomLeftButtonContainer>
-      <CallHelpButton id="top-right-button" primary onClick={openModal} >
-        <Typography variant="h5" fontWeight="700" style={{display: 'flex', alignItems: 'center' }}>
+      <CallHelpButton id="top-right-button" onClick={openModal} >
+        <Typography variant="h5" fontWeight="700" style={{display: 'flex', alignItems: 'center' }} primary="true">
           <TelephoneIcon size={40} />
           <div style={{paddingLeft: "10px"}}>Call Help</div>
         </Typography>
@@ -108,10 +115,10 @@ const CallHelpButtonComponent = ({ onClick }) => {
           },
         }}
       >
-        <Typography variant="h3" fontWeight="700" mb={6} color="#2D3E5F">
+        <Typography variant="h3" fontWeight="700" mb={10} color="#2D3E5F">
           SOS Request
         </Typography>
-        <Typography variant="h4" mb={10} color="#2D3E5F">
+        <Typography variant="h4" mb={20} color="#2D3E5F">
           Call 911 for medical emergency assistance
         </Typography>
         <Typography mb={5} >
@@ -152,16 +159,16 @@ const CallHelpButtonComponent = ({ onClick }) => {
           
         }}
       >
-        <Typography variant="h3" fontWeight="700" mb={4} color="#2D3E5F">
+        <Typography variant="h3" fontWeight="700" mb={10} color="#2D3E5F">
           SOS Request Sent
         </Typography>
         <Typography variant="h4" mb={2} color="#2D3E5F">
           Help is on the way
         </Typography>
-        <Typography variant="h4" mb={6} color="#2D3E5F">
+        <Typography variant="h4" mb={10} color="#2D3E5F">
           Your family has been notified
         </Typography>
-        <Typography variant="h4" mb={5} color="#2D3E5F">
+        <Typography variant="h4" mb={4} color="#2D3E5F">
           Now take a deep breath
         </Typography>
         <ModalButton onClick={closeNestedModal}>Okay</ModalButton>
