@@ -2,20 +2,21 @@ import React from "react";
 import styled from "styled-components";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
-const LocationIndicator = ({ currentPage }) => {
-  const Container = styled.div`
-    position: fixed;
-    bottom: 20px;
-    left: 40px;
-    display: flex;
-    align-items: center;
-    font-size: 30px;
-    font-weight: 400px;
-    // font-family: "Montserrat", sans-serif;
-    color: #2D3E5F;
-    margin: 30px; // Adjust margin as needed
-  `;
+// Create styled component outside of the functional component
+const Container = styled.div`
+  position: fixed;
+  bottom: 20px;
+  left: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 400px;
+  // font-family: "Montserrat", sans-serif;
+  color: #2D3E5F;
+  margin: 30px; // Adjust margin as needed
+`;
 
+const LocationIndicator = ({ currentPage }) => {
   return (
     <Container>
       <LocationOnIcon sx={{ marginRight: 1, color: "#f3b717", fontSize: 30 }} />
