@@ -6,7 +6,12 @@ import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
 import LocationIndicator from "../components/LocationIndicator";
-import { GroceryIcon, HaircutIcon, DryCleaningIcon } from "../components/icons";
+import {
+  GroceryIcon,
+  HaircutIcon,
+  DryCleaningIcon,
+  GardenLoftIcon,
+} from "../components/icons";
 import Navbar from "../components/Navbar";
 import CallHelpButtonComponent from "../components/CallHelpButton";
 
@@ -49,6 +54,7 @@ const Services = () => {
 
   return (
     <>
+      <GardenLoftIcon />
       <Navbar />
       <HomeContainer>
         <CarouselWrapper>
@@ -66,7 +72,7 @@ const Services = () => {
           </Slider>
         </CarouselWrapper>
       </HomeContainer>
-      <LocationIndicator currentPage={"services"} />
+      {/* <LocationIndicator currentPage={"services"} /> */}
       <CallHelpButtonComponent />
     </>
   );

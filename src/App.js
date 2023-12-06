@@ -1,16 +1,16 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ThermostatCard from './components/ThermostatCard';
-import Home from './pages/Home';
-import Services from './pages/Services';
-import Entertainment from './pages/Entertainment';
-import SmartLoftPage from './pages/SmartLoftPage';
-import SmartLightsPage from './pages/SmartLightsPage';
-import QuotesPage from './pages/QuotesPage';
-import WelcomeScreen from './components/WelcomeScreen';
-import SmartLightCard from './components/SmartLightCard';
-import AnimationPage from './pages/AnimationPage';
-import TVRemoteControlHandler from './components/TvRemoteControlHandler';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ThermostatCard from "./components/ThermostatCard";
+import Home from "./pages/Home";
+import Services from "./pages/Services";
+import Entertainment from "./pages/Entertainment";
+import SmartLoftPage from "./pages/SmartLoftPage";
+import SmartLightsPage from "./pages/SmartLightsPage";
+import QuotesPage from "./pages/QuotesPage";
+import WelcomeScreen from "./components/WelcomeScreen";
+import SmartLightCard from "./components/SmartLightCard";
+import AnimationPage from "./pages/AnimationPage";
+// import TVRemoteControlHandler from "./components/TvRemoteControlHandler";
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
         <Route path="/welcome" element={<WelcomeScreen />} />
         <Route path="/" element={<AnimationPage />} />
       </Routes>
-      <TVRemoteControlHandler />
+      {/* <TVRemoteControlHandler /> */}
     </Router>
   );
 }

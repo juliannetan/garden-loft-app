@@ -16,28 +16,36 @@ const StyledButtonAlignment = styled(Typography)`
 const CallHelpButton = styled.button`
   margin-top: 50px;
   padding: 10px;
-  background-color: #59acce;
-  color: #e9ebf8;
+  background-color: ${({ active }) => (active ? "#ff4d4d" : "#59acce")};
+  color: ${({ active }) => (active ? "white" : "#2d3e5f")};
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 48px;
+  font-size: 2.8rem;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
   font-family: "Roboto";
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    // background-color: #ff4d4d; /* Red background on hover */
+    transform: scale(1.05); /* Scale up on hover */
+  }
 
   &:active {
+    background-color: #ff4d4d; /* Red background on click */
+    color: white;
     transform: scale(0.95);
     box-shadow: 0 0 0;
   }
 `;
 
-const BottomLeftButtonContainer = styled.div`
-  position: absolute;
+const BottomCenterButtonContainer = styled.div`
+  position: fixed;
   bottom: 35px;
-  right: 125px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 999;
 `;
-
 
 const ModalButton = styled.button`
   background-color: #59acce;
@@ -49,14 +57,25 @@ const ModalButton = styled.button`
   cursor: pointer;
   font-size: 35px;
 `;
+const IconWrapper = styled.span`
+  margin-right: 10px;
+`;
 
 const CallHelpButtonComponent = ({ onClick }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isNestedModalOpen, setNestedModalOpen] = useState(false);
   const [isCancelNestedModalOpen, setCancelNestedModalOpen] = useState(false);
+  const [isButtonClicked, setButtonClicked] = useState(false);
 
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
+  const openModal = () => {
+    setModalOpen(true);
+    setButtonClicked(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setButtonClicked(false);
+  };
 
   const openNestedModal = () => {
     setModalOpen(false);
@@ -68,19 +87,25 @@ const CallHelpButtonComponent = ({ onClick }) => {
     setCancelNestedModalOpen(true);
   };
 
-  const closeNestedModal = () => setNestedModalOpen(false);
-  const closeCancelNestedModal = () => setCancelNestedModalOpen(false);
+  const closeNestedModal = () => {
+    setNestedModalOpen(false);
+    setButtonClicked(false);
+  };
+  
+  const closeCancelNestedModal = () => {
+    setCancelNestedModalOpen(false);
+    setButtonClicked(false);
+  };
 
   useEffect(() => {
     return () => {
-      // Cleanup when the component unmounts
       Modal.setAppElement(null);
     };
   }, []);
 
   const handleCallHelpButtonComponent = async () => {
     try {
-      await fetch("http://localhost:3001/call-help"); // Adjust the server URL
+      await fetch("http://localhost:3001/call-help");
       console.log("Call initiated!");
     } catch (error) {
       console.error("Error initiating the call:", error);
@@ -106,11 +131,11 @@ const CallHelpButtonComponent = ({ onClick }) => {
   };
 
   return (
-    <BottomLeftButtonContainer>
-      <CallHelpButton id="top-right-button" primary onClick={openModal} >
-        <Typography variant="h5" fontWeight="700" style={{display: 'flex', alignItems: 'center', color: '#2D3E5F' }}>
+    <BottomCenterButtonContainer>
+      <CallHelpButton id="top-right-button" primary onClick={openModal} active={isButtonClicked}>
+        <Typography variant="h5" fontWeight="700" style={{display: 'flex', alignItems: 'center' }}>
           <TelephoneIcon size={40} />
-          <div style={{paddingLeft: "10px"}}>Call Help</div>
+          <div style={{ paddingLeft: "10px" }}>Call Help</div>
         </Typography>
       </CallHelpButton>
 
@@ -156,9 +181,8 @@ const CallHelpButtonComponent = ({ onClick }) => {
           Cancel request
         </ModalButton>
         </StyledButtonAlignment>
-
       </Modal>
-      
+
       <Modal
         isOpen={isNestedModalOpen}
         onRequestClose={closeModal}
@@ -184,7 +208,6 @@ const CallHelpButtonComponent = ({ onClick }) => {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
             zIndex: 1000,
           },
-          
         }}
       >
         <Typography variant="h3" fontWeight="700" mb={4} color="#2D3E5F" display="flex" alignItems="center">
@@ -226,7 +249,6 @@ const CallHelpButtonComponent = ({ onClick }) => {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
             zIndex: 1000,
           },
-          
         }}
       >
         <Typography variant="h3" fontWeight="700" mb={4} color="#2D3E5F" display="flex" alignItems="center">
@@ -239,7 +261,7 @@ const CallHelpButtonComponent = ({ onClick }) => {
         <ModalButton onClick={closeCancelNestedModal}>Okay</ModalButton>
         </StyledButtonAlignment>
       </Modal>
-    </BottomLeftButtonContainer>
+    </BottomCenterButtonContainer>
   );
 };
 

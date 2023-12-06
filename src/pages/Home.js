@@ -1,18 +1,25 @@
 // Home.js
-import React, { useState } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import styled from 'styled-components';
-import ProfileCard from '../components/ProfileCard/ProfileCard';
-import { ContactsIcon, HealthIcon, TvIcon, ServicesIcon, SettingsIcon, ScheduleIcon, ShortcutIcon } from '../components/icons';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import Navbar from "../components/Navbar";
+import React, { useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import styled from "styled-components";
+import ProfileCard from "../components/ProfileCard/ProfileCard";
+import {
+  ContactsIcon,
+  HealthIcon,
+  TvIcon,
+  ServicesIcon,
+  SettingsIcon,
+  ScheduleIcon,
+  ShortcutIcon,
+  GardenLoftIcon,
+} from "../components/icons";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import CallHelpButtonComponent from "../components/CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
-import BroadcastIcon from '../components/icons/BroadcastIcon';
-import PageTitle from '../components/PageTitle';
+import BroadcastIcon from "../components/icons/BroadcastIcon";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -52,7 +59,7 @@ const CardColumn = styled.div`
 const CustomArrowButton = styled.div`
   width: 80px;
   height: 80px;
-  background-color: #E8E8E4;
+  background-color: #e8e8e4;
   border-radius: 25px;
   display: flex;
   align-items: center;
@@ -61,9 +68,9 @@ const CustomArrowButton = styled.div`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 1; 
+  z-index: 1;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
-  
+
   &:active {
     transform: translateY(-50%), scale(0.95); // Add a scaling effect for the pressed state
     box-shadow: 0 0 0; // Remove box shadow for a pressed effect
@@ -76,39 +83,39 @@ const StyledProfileCard = styled(ProfileCard)`
 
 const Home = () => {
   const cardData = [
-    { icon: <ShortcutIcon />, title: 'Shortcuts' },
-    { link: '/smart-loft', icon: <BroadcastIcon />, title: 'Loft Controls' },
-    { link: '/entertainment', icon: <TvIcon />, title: 'TV' },
-    { icon: <ScheduleIcon />, title: 'Schedule' },
-    { link: '/services', icon: <ServicesIcon />, title: 'Services' },
-    { icon: <ContactsIcon />, title: 'My Contacts' },
-    { icon: <HealthIcon />, title: 'My Health' },
-    { icon: <SettingsIcon />, title: 'Settings' }
+    { icon: <ShortcutIcon />, title: "Shortcuts" },
+    { link: "/smart-loft", icon: <BroadcastIcon />, title: "Loft Controls" },
+    { link: "/entertainment", icon: <TvIcon />, title: "TV" },
+    { icon: <ScheduleIcon />, title: "Schedule" },
+    { link: "/services", icon: <ServicesIcon />, title: "Services" },
+    { icon: <ContactsIcon />, title: "My Contacts" },
+    { icon: <HealthIcon />, title: "My Health" },
+    { icon: <SettingsIcon />, title: "Settings" },
     // Add more cards here
   ];
 
   const CustomNextArrow = ({ onClick }) => (
     <CustomArrowButton onClick={onClick} style={{ right: -100 }}>
-      <ArrowForwardIosIcon fontSize='large'/>
+      <ArrowForwardIosIcon fontSize="large" />
     </CustomArrowButton>
   );
 
   const CustomPrevArrow = ({ onClick }) => (
     <CustomArrowButton onClick={onClick} style={{ left: -100 }}>
-      <ArrowBackIosNewIcon fontSize='large' />
+      <ArrowBackIosNewIcon fontSize="large" />
     </CustomArrowButton>
   );
 
   const settings = {
     centerMode: true,
-    centerPadding: '0',
+    centerPadding: "0",
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     dots: true,
-    nextArrow: <CustomNextArrow data-clickable="true"/>,
-    prevArrow: <CustomPrevArrow data-clickable="true" />
+    nextArrow: <CustomNextArrow data-clickable="true" />,
+    prevArrow: <CustomPrevArrow data-clickable="true" />,
   };
 
   const sliderRef = React.createRef();
@@ -116,14 +123,18 @@ const Home = () => {
 
   return (
     <>
-        <Navbar />
-        <PageTitle title="Main" />
-        <HomeContainer disableHover={disableHover}>
+      <GardenLoftIcon />
+      <HomeContainer disableHover={disableHover}>
         <CarouselWrapper>
           <Slider ref={sliderRef} {...settings}>
             {cardData.map((card, index) => (
               <CardColumn key={index}>
-                <StyledProfileCard link={card.link} icon={card.icon} backgroundColor={card.backgroundColor} $disableHover={true}/>
+                <StyledProfileCard
+                  link={card.link}
+                  icon={card.icon}
+                  backgroundColor={card.backgroundColor}
+                  disableHover={true}
+                />
                 <div className="profile-card-title">{card.title}</div>
               </CardColumn>
             ))}

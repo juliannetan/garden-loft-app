@@ -3,7 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { SnowflakeIcon } from "./icons";
+import { GardenLoftIcon, SnowflakeIcon } from "./icons";
 import { Typography } from "@mui/material";
 import Navbar from "./Navbar";
 import CallHelpButtonComponent from "./CallHelpButton";
@@ -58,13 +58,16 @@ const Circle = styled.div`
   height: 300px;
   border-radius: 50%;
   border: 15px solid white;
-  background: ${(props) => (props.$isSwitchOn ? '#acdeff' : 'linear-gradient(180deg, rgba(255, 35, 74, 0.504) 16.67%, rgba(244, 140, 6, 0.402) 100%)')};
+  background: ${(props) =>
+    props.$isSwitchOn
+      ? "#acdeff"
+      : "linear-gradient(180deg, rgba(255, 35, 74, 0.504) 16.67%, rgba(244, 140, 6, 0.402) 100%)"};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   box-shadow: 10px 10px 18px #ba9607;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   transition: background-color 1s;
 `;
 
@@ -195,12 +198,12 @@ const CustomArrowButton = styled.div`
 `;
 
 const ThermostatCard = () => {
-    const [temperature, setTemperature] = useState(23);
-    const [isSwitchOn, setIsSwitchOn] = useState(true);
+  const [temperature, setTemperature] = useState(23);
+  const [isSwitchOn, setIsSwitchOn] = useState(true);
 
-    const handleSwitchToggle = () => {
-      setIsSwitchOn((prevIsSwitchOn) => !prevIsSwitchOn);
-    };
+  const handleSwitchToggle = () => {
+    setIsSwitchOn((prevIsSwitchOn) => !prevIsSwitchOn);
+  };
 
   const increaseTemperature = async () => {
     try {
@@ -276,6 +279,7 @@ const ThermostatCard = () => {
   return (
     <>
       <Container>
+        <GardenLoftIcon />
         <Navbar />
         <CircleContainer>
         <CircleText>
@@ -298,13 +302,9 @@ const ThermostatCard = () => {
               <RemoveIcon fontSize="large" fontWeight="700" />
           </IconButton>
           </Buttons>
-            </CircleContainer>
-        <TopRightButtonContainer>
-        </TopRightButtonContainer>
+        </CircleContainer>
+        <TopRightButtonContainer></TopRightButtonContainer>
         <BottomLeftButtonContainer>
-          {/* <BackButton id="bottom-left-button">
-            <Typography variant='h5' fontWeight="700">Back</Typography>
-          </BackButton> */}
         </BottomLeftButtonContainer>
         <LocationIndicator currentPage={"thermostat control"} />
         <CallHelpButtonComponent />
