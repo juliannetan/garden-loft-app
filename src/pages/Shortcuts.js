@@ -1,11 +1,15 @@
-// Home.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
-import { GardenLoftIcon, LightbulbMultipleIcon, PhoneIcon, ThermostatIcon, TvIcon
+import {
+  GardenLoftIcon,
+  LightbulbMultipleIcon,
+  PhoneIcon,
+  ThermostatIcon,
+  TvIcon,
 } from "../components/icons";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -37,8 +41,7 @@ const HomeContainer = styled.div`
 
 const CarouselWrapper = styled.div`
   margin: 0 auto;
-  max-width: 1000px; /* Adjust the max-width as needed */
-  justify-content: space-around;
+  max-width: 1000px;
 `;
 
 const CardColumn = styled.div`
@@ -64,17 +67,20 @@ const CustomArrowButton = styled.div`
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
 
   &:active {
-    transform: translateY(-50%), scale(0.95); // Add a scaling effect for the pressed state
-    box-shadow: 0 0 0; // Remove box shadow for a pressed effect
+    transform: translateY(-50%) scale(0.95);
+    box-shadow: 0 0 0;
   }
 `;
 
 const Shortcuts = () => {
+  const [disableHover, setDisableHover] = useState(false);
+  const sliderRef = React.createRef();
+
   const cardData = [
-    { icon: <TvIcon />, title: "tv" },
+    { icon: <TvIcon />, title: "watch TV" },
     { icon: <PhoneIcon />, title: "call Sue" },
     { icon: <LightbulbMultipleIcon />, title: "all lights" },
-    { link: "/thermostat",icon: <ThermostatIcon />, title: "thermostat" }
+    { link: "/thermostat", icon: <ThermostatIcon />, title: "thermostat" },
   ];
 
   const CustomNextArrow = ({ onClick }) => (
@@ -97,12 +103,15 @@ const Shortcuts = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     dots: true,
+    initialSlide: 1,
     nextArrow: <CustomNextArrow data-clickable="true" />,
     prevArrow: <CustomPrevArrow data-clickable="true" />,
   };
 
-  const sliderRef = React.createRef();
-  const [disableHover, setDisableHover] = useState(false);
+  useEffect(() => {
+    // Set the initial slide to the middle programmatically
+    sliderRef.current.slickGoTo(1);
+  }, [cardData.length]);
 
   return (
     <>

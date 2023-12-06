@@ -50,7 +50,7 @@ const SmartLoftPage = () => {
   const cardData = [
     { link: "/smart-lights", icon: <LampIcon />, title: "smart Lights" },
     { link: "/thermostat", icon: <ThermostatIcon />, title: "thermostat" },
-    { icon: <DoorIcon />, title: "door lock" },
+    { link: "/door-lock", icon: <DoorIcon />, title: "door lock" },
     // Add more cards here
   ];
 

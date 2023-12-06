@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ThermostatCard from "./components/ThermostatCard";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
+import DoorLockPage from "./pages/DoorLockPage";
 import Entertainment from "./pages/Entertainment";
 import SmartLoftPage from "./pages/SmartLoftPage";
 import SmartLightsPage from "./pages/SmartLightsPage";
@@ -18,6 +19,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/home" element={<Home />} />
+        <Route path="/door-lock" element={<DoorLockPage />} />
         <Route path="/shortcuts" element={<Shortcuts />} />
         <Route path="/entertainment" element={<Entertainment />} />
         <Route path="/services" element={<Services />} />
