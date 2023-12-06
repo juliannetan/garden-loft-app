@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
 import ProfileCard from './ProfileCard/ProfileCard';
-import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import { LightbulbOutlineIcon, GardenLoftIcon } from './icons';
+import { GardenLoftIcon } from './icons';
+import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 
 const SmartLightCard = () => {
   const [socket, setSocket] = useState(null);
@@ -12,13 +12,13 @@ const SmartLightCard = () => {
   const [incrimentalId, setIncrimentalId] = useState(1);
   useEffect(() => {
     // Create WebSocket connection
-    const newSocket = new WebSocket("ws://homeassistant.local:8123/api/websocket");
+    const newSocket = new WebSocket("wss://iqbtrqvkgp7trilophztgmkfuggm9sb4.ui.nabu.casa/api/websocket");
     newSocket.addEventListener('open', () => {
       // Authenticate with Home Assistant
       newSocket.send(
         JSON.stringify({
           type: "auth",
-          access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhNmE1NGFlODg3YmU0ZmUyYTdmMzZlNjgzZGY2ZTZjYSIsImlhdCI6MTcwMDU4NjAzMywiZXhwIjoyMDE1OTQ2MDMzfQ.lopph2KvRSjOM84VCa3TOwQlqjllkABa-k4bkhGO868", // Replace with your access token
+          access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI3ZTA5NDg5M2E3NGI0MDY1OWFmMzYzYTJkMDYzOGJhMiIsImlhdCI6MTcwMDc3NDU5MCwiZXhwIjoyMDE2MTM0NTkwfQ.VV19RhjO5Dsc01D3g21NV27WlJeioWmvowtibkqsQ5k", // Replace with your access token
         })
       );
       newSocket.send(
@@ -135,7 +135,7 @@ const SmartLightCard = () => {
           borderRadius={"200px"}
           onClick={toggleSwitch}
           backgroundColor={switchState === 'on' ? '#FFC100' : '#7F8181'}
-          icon={switchState === 'on' ? <LightbulbIcon onClick={toggleSwitch} /> : <LightbulbOutlineIcon onClick={toggleSwitch} />} />
+          icon={<LightbulbOutlinedIcon onClick={toggleSwitch} />} />
         <div className="profile-card-title">Floor Light</div>
         <Typography className="switch-state">{switchState}</Typography>
       </div></>

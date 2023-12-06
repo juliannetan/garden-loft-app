@@ -10,6 +10,7 @@ import { DoorIcon, LampIcon, ThermostatIcon } from '../components/icons';
 import Navbar from "../components/Navbar";
 import CallHelpButtonComponent from "../components/CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
+import PageTitle from '../components/PageTitle';
 
 const HomeContainer = styled.div`
   display: flex;
@@ -53,6 +54,7 @@ const SmartLoftPage = () => {
   return (
     <>
       <Navbar />
+      <PageTitle title="Loft Controls" />
       <HomeContainer>
         <CarouselWrapper>
           <Slider ref={sliderRef} {...settings}>

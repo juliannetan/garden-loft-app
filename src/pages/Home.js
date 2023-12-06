@@ -12,6 +12,7 @@ import Navbar from "../components/Navbar";
 import CallHelpButtonComponent from "../components/CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
 import BroadcastIcon from '../components/icons/BroadcastIcon';
+import PageTitle from '../components/PageTitle';
 
 const HomeContainer = styled.div`
   display: flex;
@@ -115,8 +116,9 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
-      <HomeContainer $disableHover={disableHover}>
+        <Navbar />
+        <PageTitle title="Main" />
+        <HomeContainer disableHover={disableHover}>
         <CarouselWrapper>
           <Slider ref={sliderRef} {...settings}>
             {cardData.map((card, index) => (
