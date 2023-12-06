@@ -9,8 +9,8 @@ const LocationIndicator = ({ currentPage }) => {
     left: 40px;
     display: flex;
     align-items: center;
-    font-size: 30px;
-    font-weight: 400px;
+    font-size: 40px;
+    font-weight: 600;
     // font-family: "Montserrat", sans-serif;
     color: #2D3E5F;
     margin: 30px; // Adjust margin as needed
@@ -18,7 +18,7 @@ const LocationIndicator = ({ currentPage }) => {
 
   return (
     <Container>
-      <LocationOnIcon sx={{ marginRight: 1, color: "#f3b717", fontSize: 30 }} />
+      <LocationOnIcon sx={{ marginRight: 1, color: "#f3b717", fontSize: 40 }} />
       You are at the {currentPage} screen
     </Container>
   );

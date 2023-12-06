@@ -22,6 +22,10 @@ export { default as GroceryIcon } from './GroceryIcon';
 export { default as ShortcutIcon } from './ShortcutIcon';
 export { default as SettingsIcon } from './SettingsIcon';
 export { default as LightbulbMultiple } from './LightbulbMultiple';
+export { default as AmbulanceIcon } from './AmbulanceIcon';
+export { default as AmbulanceSideIcon } from './AmbulanceSideIcon';
+export { default as NoAmbulanceIcon } from './NoAmbulanceIcon';
+
 
 
 

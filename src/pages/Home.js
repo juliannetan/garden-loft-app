@@ -12,6 +12,7 @@ import Navbar from "../components/Navbar";
 import CallHelpButtonComponent from "../components/CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
 import BroadcastIcon from '../components/icons/BroadcastIcon';
+import PageTitle from '../components/PageTitle';
 
 const HomeContainer = styled.div`
   display: flex;
@@ -112,7 +113,7 @@ const Home = () => {
   return (
     <>
         <Navbar />
-        {/* <PageTitle title="Home" /> */}
+        <PageTitle title="Main" />
         <HomeContainer disableHover={disableHover}>
         <CarouselWrapper>
           <Slider ref={sliderRef} {...settings}>

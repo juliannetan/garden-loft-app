@@ -9,6 +9,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Navbar from "../components/Navbar";
 import CallHelpButtonComponent from "../components/CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
+import PageTitle from '../components/PageTitle';
 
 const HomeContainer = styled.div`
   display: flex;
@@ -152,6 +153,7 @@ const SmartLightsPage = () => {
   return (
     <>
     <Navbar />
+    <PageTitle title="Lights Control" />
     <HomeContainer>
         <CarouselWrapper>
       <Slider {...settings}>
