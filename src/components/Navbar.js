@@ -6,10 +6,9 @@ import Rotate90DegreesCcwIcon from "@mui/icons-material/Rotate90DegreesCcw";
 
 const NavbarContainer = styled.div`
   position: fixed;
-  top: 40px;
+  top: 60px;
   left: 0;
   right: 0;
-  height: 60px;
   display: flex;
   justify-content: center; /* Center the button */
   align-items: center;
@@ -24,13 +23,12 @@ const StyledButton = styled(Link)`
   color: #2d3e5f; /* Text color */
   // background-color: #eedc9a; /* Button color */
   background-color: #ffc10080;
-  padding: 10px 20px; /* Adjust padding as needed */
+  padding: 10px 60px; /* Adjust padding as needed */
   border-radius: 20px; /* Rounded edges */
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
   border: 1px solid #ccc; /* Light grey outline */
-
   &:hover {
     background-color: #ccc; /* Hover effect for button color */
     color: #2d3e5f; /* Hover effect for text color */
@@ -39,11 +37,11 @@ const StyledButton = styled(Link)`
 
   .icon {
     margin-right: 10px;
-    font-size: 40px;
+    font-size: 80px;
   }
 
   .menu-text {
-    font-size: 2.5rem; /* Adjust font size as needed */
+    font-size: 48px; /* Adjust font size as needed */
     font-weight: bold;
   }
 `;

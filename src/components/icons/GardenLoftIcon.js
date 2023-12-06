@@ -7,9 +7,9 @@ const GardenLoftIcon = () => {
       src="garden loft-logo2.png"
       alt="Garden Loft Icon"
       style={{
-        width: "200px",
-        height: "106px",
-        marginRight: "10px",
+        width: "260px",
+        height: "128px",
+        margin: "50px",
         position: "fixed",
         top: "10px",
         left: "10px",

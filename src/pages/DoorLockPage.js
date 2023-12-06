@@ -20,7 +20,7 @@ const CircleContainer = styled.div`
   text-align: center; // Center-align the text within the container
 `;
 
-const CoolText = styled.div`
+const StatusText = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,16 +28,16 @@ const CoolText = styled.div`
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 24px;
+  font-size: 45px;
   font-family: "Roboto";
   flex-direction: column;
 `;
 
 const Circle = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   border-radius: 50%;
-  border: 15px solid ${(props) => props.isSwitchOn ? "#FFC100" : "#E9EBF8"};
+  border: 16px solid ${(props) => props.isSwitchOn ? "#FFC100" : "#E9EBF8"};
   background: #7F8181;
   display: flex;
   flex-direction: column;
@@ -49,8 +49,8 @@ const Circle = styled.div`
 `;
 const CircleText = styled.span`
   position: absolute;
-  bottom: -80px;
-  width: 100%;
+  bottom: -150px;
+  width: 110%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #2d3e5f;
@@ -90,13 +90,13 @@ const DoorLockPage = () => {
         <Navbar />
         <CircleContainer>
           <Circle isSwitchOn={isSwitchOn} onClick={handleSwitchToggle}>
-            <CoolText>
+            <StatusText>
               {isSwitchOn ? <DoorLockedIcon size={190} /> : <DoorUnlockedIcon size={167} />}
-              <Typography style={{transition: "color 1s"}}  marginTop={isSwitchOn ? "0" : "20px"} color={isSwitchOn ? "#FFC100" : "#E9EBF8"} variant="h5" fontWeight="550">{isSwitchOn ? 'Locked' : 'Unlocked'}</Typography>
-            </CoolText>
+              <Typography style={{transition: "color 1s"}}  marginTop={isSwitchOn ? "0" : "20px"} color={isSwitchOn ? "#FFC100" : "#E9EBF8"} fontSize="45px" fontWeight="550">{isSwitchOn ? 'Locked' : 'Unlocked'}</Typography>
+            </StatusText>
           </Circle>
           <CircleText>
-        <Typography variant="h4" fontWeight="500">press ok to {isSwitchOn ? 'unlock' : 'lock'}</Typography>
+        <Typography fontSize={"45px"} fontWeight="550">press ok to {isSwitchOn ? 'unlock' : 'lock'}</Typography>
         </CircleText>
         </CircleContainer>
         <TopRightButtonContainer></TopRightButtonContainer>

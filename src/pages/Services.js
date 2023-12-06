@@ -14,26 +14,7 @@ import {
 } from "../components/icons";
 import Navbar from "../components/Navbar";
 import CallHelpButtonComponent from "../components/CallHelpButton";
-
-const HomeContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  min-height: 100vh;
-  text-align: center;
-`;
-
-const CarouselWrapper = styled.div`
-  margin: 0 auto;
-  max-width: 1000px; /* Adjust the max-width as needed */
-`;
-
-const CardColumn = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-`;
+import { CarouselWrapper, CardColumn, HomeContainer } from "./Home"
 
 const Services = () => {
   const cardData = [

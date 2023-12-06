@@ -8,21 +8,7 @@ import { Typography } from "@mui/material";
 import Navbar from "./Navbar";
 import CallHelpButtonComponent from "./CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-
-
-const CustomNextArrow = ({ onClick }) => (
-  <CustomArrowButton onClick={onClick} style={{ right: '300px', position: 'fixed' }}>
-    <ArrowForwardIosIcon fontSize='large'/>
-  </CustomArrowButton>
-);
-
-const CustomPrevArrow = ({ onClick }) => (
-  <CustomArrowButton onClick={onClick} style={{ left: '300px', position: 'fixed' }}>
-    <ArrowBackIosNewIcon fontSize='large' />
-  </CustomArrowButton>
-);
+import { CustomNextArrow, CustomPrevArrow } from "../pages/SmartLoftPage";
 
 const Container = styled.div`
   display: flex;
@@ -43,19 +29,19 @@ const CoolText = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 20%;
+  top: 15%;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 24px;
+  font-size: 45px;
   color: #2d3e5f;
   font-family: "Roboto";
 `;
 
 const Circle = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   border-radius: 50%;
-  border: 15px solid white;
+  border: 16px solid white;
   background: ${(props) =>
     props.isSwitchOn
       ? "#acdeff"
@@ -70,7 +56,7 @@ const Circle = styled.div`
 `;
 const CircleText = styled.span`
   position: absolute;
-  bottom: -80px;
+  bottom: -150px;
   width: 100%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -95,13 +81,13 @@ const Buttons = styled.div`
 const IconButton = styled.button`
   margin-top: 50px;
   padding: 10px;
-  background-color: #ffcc00;
+  background-color: #E8E8E4;
   color: #273381;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  width: 85px;
-  height: 85px;
+  width: 150px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,32 +118,23 @@ const BottomLeftButtonContainer = styled.div`
 
 const Temperature = styled(Typography)`
   color: #2d3e5f;
-  font-size: 120px;
+  font-size: 140px;
   font-weight: bold;
   line-height: 111px;
   letter-spacing: 0em;
   text-align: left;
 `;
 
-const CustomArrowButton = styled.div`
-  width: 80px;
-  height: 80px;
-  background-color: #E8E8E4;
-  border-radius: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1; 
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
-  
-  &:active {
-    transform: translateY(-50%), scale(0.95); // Add a scaling effect for the pressed state
-    box-shadow: 0 0 0; // Remove box shadow for a pressed effect
-  }
+export const LabelText = styled.div`
+width: 500px;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+position: absolute;
+top: 90%;
+z-index: 1; 
+color: #2d3e5f;
 `;
 
 const ThermostatCard = () => {
@@ -247,23 +224,29 @@ const ThermostatCard = () => {
         <CircleContainer>
           <Circle isSwitchOn={isSwitchOn} onClick={handleSwitchToggle}>
             <CoolText>
-              {isSwitchOn ? <SnowflakeIcon size={35} />: <HeatIcon size={35} />}
-              <Typography variant="h5" fontWeight="550">{isSwitchOn ? 'Cool' : 'Heat'}</Typography>
+              {isSwitchOn ? <SnowflakeIcon size={70} />: <HeatIcon size={70} />}
+              <Typography fontSize="45px" fontWeight="550">{isSwitchOn ? 'cool' : 'heat'}</Typography>
             </CoolText>
             <Temperature variant="h1">{temperature}°C</Temperature>
           </Circle>
+          <LabelText>
+            <Typography fontSize={"45px"} fontWeight="550" style={{ right: '300px', position: 'fixed' }}>press to increase</Typography> 
+          </LabelText>
+          <LabelText>
+            <Typography fontSize={"45px"} fontWeight="550" style={{ left: '300px', position: 'fixed' }}>press to decrease</Typography> 
+          </LabelText>
           <Buttons>
             <CustomPrevArrow  />
             <CustomNextArrow />
-            <IconButton className="button" onClick={increaseTemperature} style={{  right: '400px', position: 'fixed', marginTop: '122px'}}>
+            <IconButton className="button" onClick={increaseTemperature} style={{  right: '500px', position: 'fixed', marginTop: '140px'}}>
               <AddIcon fontSize="large" fontWeight="700" />
             </IconButton>
-            <IconButton className="button" onClick={decreaseTemperature} style={{ left: '400px', position: 'fixed', marginTop: '122px' }}>
+            <IconButton className="button" onClick={decreaseTemperature} style={{ left: '500px', position: 'fixed', marginTop: '140px' }}>
               <RemoveIcon fontSize="large" fontWeight="700" />
           </IconButton>
           </Buttons>
           <CircleText>
-        <Typography variant="h4" fontWeight="500">press ok to {isSwitchOn ? 'heat' : 'cool'}</Typography>
+        <Typography fontSize={"45px"} fontWeight="550">press ok to {isSwitchOn ? 'heat' : 'cool'}</Typography> 
         </CircleText>
         </CircleContainer>
         <TopRightButtonContainer></TopRightButtonContainer>
