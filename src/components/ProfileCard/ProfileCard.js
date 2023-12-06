@@ -8,10 +8,10 @@ const ProfileCardLink = styled(Link)`
 `;
 
 const ProfileCardContainer = styled.div`
-  width: 200px;
-  height: 224px;
+  width: 300px;
+  height: 336px;
   background: ${(props) => (props.backgroundColor !== null && props.backgroundColor !== undefined ? props.backgroundColor : '#7F8181')};
-  border-radius: ${(props) => (props.borderRadius !== null && props.borderRadius !== undefined ? props.borderRadius : '10px')} !important;
+  border-radius: 35px;
   box-shadow:0 8px 16px rgba(0, 0, 0, 0.2);
   margin: 50px;
   padding: 20px;

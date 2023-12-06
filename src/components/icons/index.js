@@ -29,6 +29,8 @@ export { default as HeatIcon } from './HeatIcon';
 export { default as PhoneIcon } from './PhoneIcon';
 export { default as DoorUnlockedIcon } from './DoorUnlockedIcon';
 export { default as DoorLockedIcon } from './DoorLockedIcon';
+export { default as ChevronLeftIcon } from './ChevronLeftIcon';
+export { default as ChevronRightIcon} from './ChevronRightIcon';
 
 
 

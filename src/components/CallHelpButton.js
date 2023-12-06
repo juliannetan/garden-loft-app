@@ -55,7 +55,8 @@ const ModalButton = styled.button`
   margin-right: 50px;
   padding: 10px 20px;
   cursor: pointer;
-  font-size: 35px;
+  font-size: 45px;
+  font-weight: 550;
 `;
 const IconWrapper = styled.span`
   margin-right: 10px;
@@ -133,8 +134,8 @@ const CallHelpButtonComponent = ({ onClick }) => {
   return (
     <BottomCenterButtonContainer>
       <CallHelpButton id="top-right-button" primary onClick={openModal} active={isButtonClicked}>
-        <Typography variant="h5" fontWeight="700" style={{display: 'flex', alignItems: 'center' }}>
-          <TelephoneIcon size={40} />
+        <Typography fontSize={"48px"} fontWeight="700" style={{display: 'flex', alignItems: 'center', padding: '0 20px' }}>
+          <TelephoneIcon size={60} />
           <div style={{ paddingLeft: "10px" }}>Call Help</div>
         </Typography>
       </CallHelpButton>
@@ -150,15 +151,13 @@ const CallHelpButtonComponent = ({ onClick }) => {
             transform: "translate(-50%, -50%)",
             backgroundColor: "#FFFCE7",
             opacity: 0.9,
-            padding: "20px",
             borderRadius: "25px",
             textAlign: "left",
-            paddingLeft: "50px",
             color: "white",
             fontSize: "40px",
             border: "none",
-            width: "35%",
-            height: "45%"
+            width: "912px",
+            height: "480px"
           },
           overlay: {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -166,14 +165,14 @@ const CallHelpButtonComponent = ({ onClick }) => {
           },
         }}
       >
-        <Typography variant="h3" fontWeight="700" mb={4} color="#2D3E5F" display="flex" alignItems="center">
+        <Typography style={{paddingLeft: "60px", paddingTop: "40px"}} fontSize={"55px"} fontWeight="700" mb={3} color="#2D3E5F" display="flex" alignItems="center">
           Help request
           <div style={{paddingLeft: "20px"}}><AmbulanceSideIcon size={120}/></div>
         </Typography>
-        <Typography variant="h4" fontWeight="550" color="#2D3E5F">
+        <Typography style={{paddingLeft: "60px"}}  fontSize={"48px"} fontWeight="500" color="#2D3E5F">
           Call 911 for medical emergency assistance
         </Typography>
-        <StyledButtonAlignment>
+        <StyledButtonAlignment style={{paddingLeft: "60px"}}>
         <ModalButton onClick={handleConfirm}>
           Yes, I need help
         </ModalButton>
@@ -194,15 +193,13 @@ const CallHelpButtonComponent = ({ onClick }) => {
             transform: "translate(-50%, -50%)",
             backgroundColor: "#FFFCE7",
             opacity: 0.9,
-            padding: "20px",
-            paddingLeft: "50px",
             borderRadius: "25px",
             textAlign: "left",
             color: "white",
             fontSize: "40px",
             border: "none",
-            width: "35%",
-            height: "45%",
+            width: "912px",
+            height: "480px"
           },
           overlay: {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -210,17 +207,19 @@ const CallHelpButtonComponent = ({ onClick }) => {
           },
         }}
       >
-        <Typography variant="h3" fontWeight="700" mb={4} color="#2D3E5F" display="flex" alignItems="center">
+        <Typography style={{paddingLeft: "60px", paddingTop: "40px"}} fontSize={"55px"} fontWeight="700" mb={3} color="#2D3E5F" display="flex" alignItems="center">
         Help request sent<div style={{paddingLeft: "20px"}}><AmbulanceIcon size={120} /></div>
         </Typography>
-        <Typography variant="h4" fontWeight="550" mb={2} color="#2D3E5F">
+        <Typography style={{paddingLeft: "60px"}} fontSize={"48px"} fontWeight="500" mb={1} color="#2D3E5F">
           Help is on the way
         </Typography>
-        <Typography variant="h4" fontWeight="550" mb={6} color="#2D3E5F">
+        <Typography style={{paddingLeft: "60px"}} fontSize={"48px"} fontWeight="500" mb={6} color="#2D3E5F">
           and your family has been notified.
         </Typography>
-        <StyledButtonAlignment>
-        <ModalButton onClick={closeNestedModal}>Okay</ModalButton>
+        <StyledButtonAlignment style={{paddingLeft: "60px"}}>
+        <ModalButton style={{background: 'none', border: 'solid', borderColor: '#2d3e5f', borderRadius: '25px'}} onClick={closeNestedModal}>
+          Press to close
+        </ModalButton>
         </StyledButtonAlignment>
       </Modal>
 
@@ -235,15 +234,13 @@ const CallHelpButtonComponent = ({ onClick }) => {
             transform: "translate(-50%, -50%)",
             backgroundColor: "#FFFCE7",
             opacity: 0.9,
-            padding: "20px",
-            paddingLeft: "50px",
             borderRadius: "25px",
             textAlign: "left",
             color: "white",
             fontSize: "40px",
             border: "none",
-            width: "35%",
-            height: "45%",
+            width: "912px",
+            height: "480px"
           },
           overlay: {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -251,14 +248,16 @@ const CallHelpButtonComponent = ({ onClick }) => {
           },
         }}
       >
-        <Typography variant="h3" fontWeight="700" mb={4} color="#2D3E5F" display="flex" alignItems="center">
+        <Typography style={{paddingLeft: "60px", paddingTop: "40px"}} fontSize={"55px"} fontWeight="700" mb={3} color="#2D3E5F" display="flex" alignItems="center">
           Help request cancelled<div style={{paddingLeft: "20px"}}><NoAmbulanceIcon size={120} /></div>
         </Typography>
-        <Typography variant="h4" fontWeight="550"color="#2D3E5F">
+        <Typography style={{paddingLeft: "60px"}} fontSize={"48px"} fontWeight="550"color="#2D3E5F">
           Your request to call 911 is cancelled.
         </Typography>
-        <StyledButtonAlignment>
-        <ModalButton onClick={closeCancelNestedModal}>Okay</ModalButton>
+        <StyledButtonAlignment style={{paddingLeft: "60px"}}>
+        <ModalButton style={{background: 'none', border: 'solid', borderColor: '#2d3e5f', borderRadius: '25px'}} onClick={closeCancelNestedModal}>
+          Press to close
+        </ModalButton>
         </StyledButtonAlignment>
       </Modal>
     </BottomCenterButtonContainer>

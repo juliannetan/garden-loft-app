@@ -2,11 +2,13 @@
 import React from "react";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
 import "../components/ProfileCard/ProfileCard.css";
+import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styled from "styled-components";
 import {
+  ChevronRightIcon,
+  ChevronLeftIcon,
   DoorIcon,
   GardenLoftIcon,
   LampIcon,
@@ -15,26 +17,50 @@ import {
 import Navbar from "../components/Navbar";
 import CallHelpButtonComponent from "../components/CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
+import { CarouselWrapper, CardColumn, HomeContainer } from "./Home";
 
-const HomeContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  min-height: 100vh;
-  text-align: center;
+export const CustomNextArrow = ({ onClick }) => (
+  <CustomArrowButton onClick={onClick} style={{ right: '220px', position: 'fixed' }}>
+    <ChevronRightIcon/>
+  </CustomArrowButton>
+);
+
+export const CustomPrevArrow = ({ onClick }) => (
+  <CustomArrowButton onClick={onClick} style={{ left: '220px', position: 'fixed' }}>
+    <ChevronLeftIcon />
+  </CustomArrowButton>
+);
+
+export const StyledTypography = styled.div`
+  margin-top: 10px;
+  font-weight: bold;
+  color: #2D3E5F;
+  font-size: 45px;
+
+  &:hover {
+    padding-top: 10px;
+    transform: scale(1.2);
+  }
 `;
 
-const CarouselWrapper = styled.div`
-  margin: 0 auto;
-  max-width: 1000px; /* Adjust the max-width as needed */
+export const CustomArrowButton = styled.div`
+width: 80px;
+height: 80px;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+z-index: 1; 
+
+&:active {
+  transform: translateY(-50%), scale(0.95); // Add a scaling effect for the pressed state
+  box-shadow: 0 0 0; // Remove box shadow for a pressed effect
+}
 `;
 
-const CardColumn = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-`;
 
 const SmartLoftPage = () => {
   const settings = {
@@ -48,7 +74,7 @@ const SmartLoftPage = () => {
   const sliderRef = React.createRef();
 
   const cardData = [
-    { link: "/smart-lights", icon: <LampIcon />, title: "smart Lights" },
+    { link: "/smart-lights", icon: <LampIcon />, title: "smart lights" },
     { link: "/thermostat", icon: <ThermostatIcon />, title: "thermostat" },
     { link: "/door-lock", icon: <DoorIcon />, title: "door lock" },
     // Add more cards here
@@ -60,6 +86,8 @@ const SmartLoftPage = () => {
       <Navbar />
       <HomeContainer>
         <CarouselWrapper>
+        <CustomPrevArrow  />
+            <CustomNextArrow />
           <Slider ref={sliderRef} {...settings}>
             {cardData.map((card, index) => (
               <CardColumn key={index}>
@@ -68,7 +96,7 @@ const SmartLoftPage = () => {
                   icon={card.icon}
                   backgroundColor={card.backgroundColor}
                 />
-                <div className="profile-card-title">{card.title}</div>
+                <StyledTypography>{card.title}</StyledTypography>
               </CardColumn>
             ))}
           </Slider>

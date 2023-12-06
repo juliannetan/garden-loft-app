@@ -38,7 +38,7 @@ const WelcomeScreen = () => {
     <ErrorBoundary>
       <GardenLoftIcon />
       <WelcomeContainer>
-      <Typography fontWeight={400} variant='h1' color='#2D3E5F'>Hello Elizabeth</Typography>
+      <Typography fontWeight={400} variant='h1' color='#2D3E5F'>Hello Sarah</Typography>
         <br />
         <Typography fontWeight={100} variant='h2' color='#2D3E5F'>welcome back</Typography>
       </WelcomeContainer>

@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
 import {
+  ChevronLeftIcon,
+  ChevronRightIcon, 
   ContactsIcon,
   HealthIcon,
   TvIcon,
@@ -15,13 +17,11 @@ import {
   ShortcutIcon,
   GardenLoftIcon,
 } from "../components/icons";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import CallHelpButtonComponent from "../components/CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
 import BroadcastIcon from "../components/icons/BroadcastIcon";
 
-const HomeContainer = styled.div`
+export const HomeContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -35,6 +35,10 @@ const HomeContainer = styled.div`
       transition: transform 0.5s ease;
       padding: 20px;
     }
+    .profile-card-title {
+      padding-top: 10px;
+      transform: scale(1.2);
+    }
     .icon-container {
       svg {
         fill: #e9ebf8;
@@ -43,13 +47,13 @@ const HomeContainer = styled.div`
   }
 `;
 
-const CarouselWrapper = styled.div`
+export const CarouselWrapper = styled.div`
   margin: 0 auto;
-  max-width: 1000px; /* Adjust the max-width as needed */
+  max-width: 1300px; /* Adjust the max-width as needed */
   justify-content: space-around;
 `;
 
-const CardColumn = styled.div`
+export const CardColumn = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -59,8 +63,6 @@ const CardColumn = styled.div`
 const CustomArrowButton = styled.div`
   width: 80px;
   height: 80px;
-  background-color: #e8e8e4;
-  border-radius: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,7 +71,6 @@ const CustomArrowButton = styled.div`
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
 
   &:active {
     transform: translateY(-50%), scale(0.95); // Add a scaling effect for the pressed state
@@ -80,6 +81,18 @@ const CustomArrowButton = styled.div`
 const StyledProfileCard = styled(ProfileCard)`
   // Add any additional styles here
 `;
+
+export const CustomNextArrow = ({ onClick }) => (
+  <CustomArrowButton onClick={onClick} style={{ right: -100 }}>
+    <ChevronRightIcon />
+  </CustomArrowButton>
+);
+
+export const CustomPrevArrow = ({ onClick }) => (
+  <CustomArrowButton onClick={onClick} style={{ left: -100 }}>
+    <ChevronLeftIcon />
+  </CustomArrowButton>
+);
 
 const Home = () => {
   const cardData = [
@@ -93,18 +106,6 @@ const Home = () => {
     { icon: <SettingsIcon />, title: "settings" },
     // Add more cards here
   ];
-
-  const CustomNextArrow = ({ onClick }) => (
-    <CustomArrowButton onClick={onClick} style={{ right: -100 }}>
-      <ArrowForwardIosIcon fontSize="large" />
-    </CustomArrowButton>
-  );
-
-  const CustomPrevArrow = ({ onClick }) => (
-    <CustomArrowButton onClick={onClick} style={{ left: -100 }}>
-      <ArrowBackIosNewIcon fontSize="large" />
-    </CustomArrowButton>
-  );
 
   const settings = {
     centerMode: true,
