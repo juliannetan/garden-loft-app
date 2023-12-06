@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
-import { GardenLoftIcon, HeatIcon, SnowflakeIcon } from "./icons";
+import { GardenLoftIcon, HeatIcon, MinusIcon, PlusIcon, SnowflakeIcon } from "./icons";
 import { Typography } from "@mui/material";
 import Navbar from "./Navbar";
 import CallHelpButtonComponent from "./CallHelpButton";
@@ -239,10 +237,10 @@ const ThermostatCard = () => {
             <CustomPrevArrow  />
             <CustomNextArrow />
             <IconButton className="button" onClick={increaseTemperature} style={{  right: '500px', position: 'fixed', marginTop: '140px'}}>
-              <AddIcon fontSize="large" fontWeight="700" />
+              <PlusIcon size={100}/>
             </IconButton>
             <IconButton className="button" onClick={decreaseTemperature} style={{ left: '500px', position: 'fixed', marginTop: '140px' }}>
-              <RemoveIcon fontSize="large" fontWeight="700" />
+              <MinusIcon size={100}/>
           </IconButton>
           </Buttons>
           <CircleText>

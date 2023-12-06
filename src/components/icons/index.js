@@ -31,6 +31,8 @@ export { default as DoorUnlockedIcon } from './DoorUnlockedIcon';
 export { default as DoorLockedIcon } from './DoorLockedIcon';
 export { default as ChevronLeftIcon } from './ChevronLeftIcon';
 export { default as ChevronRightIcon} from './ChevronRightIcon';
+export { default as PlusIcon} from './PlusIcon';
+export { default as MinusIcon} from './MinusIcon';
 
 
 
