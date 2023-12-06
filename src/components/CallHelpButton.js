@@ -165,7 +165,7 @@ const CallHelpButtonComponent = ({ onClick }) => {
           },
         }}
       >
-        <Typography style={{paddingLeft: "60px", paddingTop: "40px"}} fontSize={"55px"} fontWeight="700" mb={3} color="#2D3E5F" display="flex" alignItems="center">
+        <Typography style={{paddingLeft: "60px"}} fontSize={"55px"} fontWeight="700" mb={3} color="#2D3E5F" display="flex" alignItems="center">
           Help request
           <div style={{paddingLeft: "20px"}}><AmbulanceSideIcon size={120}/></div>
         </Typography>
@@ -207,7 +207,7 @@ const CallHelpButtonComponent = ({ onClick }) => {
           },
         }}
       >
-        <Typography style={{paddingLeft: "60px", paddingTop: "40px"}} fontSize={"55px"} fontWeight="700" mb={3} color="#2D3E5F" display="flex" alignItems="center">
+        <Typography style={{paddingLeft: "60px"}} fontSize={"55px"} fontWeight="700" mb={3} color="#2D3E5F" display="flex" alignItems="center">
         Help request sent<div style={{paddingLeft: "20px"}}><AmbulanceIcon size={120} /></div>
         </Typography>
         <Typography style={{paddingLeft: "60px"}} fontSize={"48px"} fontWeight="500" mb={1} color="#2D3E5F">
@@ -248,7 +248,7 @@ const CallHelpButtonComponent = ({ onClick }) => {
           },
         }}
       >
-        <Typography style={{paddingLeft: "60px", paddingTop: "40px"}} fontSize={"55px"} fontWeight="700" mb={3} color="#2D3E5F" display="flex" alignItems="center">
+        <Typography style={{paddingLeft: "60px"}} fontSize={"55px"} fontWeight="700" mb={3} color="#2D3E5F" display="flex" alignItems="center">
           Help request cancelled<div style={{paddingLeft: "20px"}}><NoAmbulanceIcon size={120} /></div>
         </Typography>
         <Typography style={{paddingLeft: "60px"}} fontSize={"48px"} fontWeight="550"color="#2D3E5F">
