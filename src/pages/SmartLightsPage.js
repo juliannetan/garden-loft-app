@@ -6,15 +6,14 @@ import "slick-carousel/slick/slick-theme.css";
 import {
   GardenLoftIcon,
   LightbulbFilledIcon,
-  LightbulbMultiple,
+  LightbulbMultipleIcon,
   LightbulbOutlineIcon,
 } from "../components/icons";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import Navbar from "../components/Navbar";
 import CallHelpButtonComponent from "../components/CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
-import PageTitle from '../components/PageTitle';
+import Navbar from "../components/Navbar";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -25,7 +24,7 @@ const HomeContainer = styled.div`
 
   div.slick-slide.slick-active.slick-center.slick-current {
     .smart-lights-div {
-      transform: scale(1.3);
+      transform: scale(1.25);
       transition: transform 0.5s ease;
       padding: 20px;
     }
@@ -63,9 +62,9 @@ const CardContent = styled.div`
 `;
 
 const RoundButton = styled.div`
-  width: 200px;
-  height: 200px;
-  background-color: ${(props) => (props.$isOn ? "#FFC100" : "#7F8181")};
+  width: 224px;
+  height: 224px;
+  background-color: ${(props) => (props.isOn ? "#FFC100" : "#7F8181")};
   font-size: 16px;
   padding: 20px;
   border: none;
@@ -104,26 +103,26 @@ const CustomArrowButton = styled.div`
 const lightsData = [
   {
     id: "floor-light",
-    label: "Floor",
-    status: "Off",
+    label: "floor",
+    status: "off",
     icon: <LightbulbFilledIcon />,
   },
   {
     id: "overhead-light",
-    label: "Overhead",
-    status: "Off",
+    label: "overhead",
+    status: "off",
     icon: <LightbulbFilledIcon />,
   },
   {
     id: "kitchen-light",
-    label: "Accent",
-    status: "Off",
+    label: "accent",
+    status: "off",
     icon: <LightbulbFilledIcon />,
   },
   {
     id: "bedroom-light",
-    label: "Bedroom",
-    status: "Off",
+    label: "bedroom",
+    status: "off",
     icon: <LightbulbOutlineIcon />,
   },
 ];
@@ -186,23 +185,23 @@ const SmartLightsPage = () => {
             <CardColumn>
               <RoundButton
                 className="smart-lights-div"
-                $isOn={lights.every((light) => light.status === "On")}
+                isOn={lights.every((light) => light.status === "On")}
                 onClick={handleAllOnOffClick}>
                 <CardContent>
                   {lights.every((light) => light.status === "On") ? (
-                    <LightbulbMultiple color={"#E9EBF8"} />
+                    <LightbulbMultipleIcon color={"#E9EBF8"} />
                   ) : (
-                    <LightbulbMultiple />
+                    <LightbulbMultipleIcon />
                   )}
                 </CardContent>
               </RoundButton>
-              <div className="profile-card-title">All Lights</div>
+              <div className="profile-card-title">all lights</div>
             </CardColumn>
             {lights.map((light) => (
               <CardColumn key={light.id}>
                 <RoundButton
                   className="smart-lights-div"
-                  $isOn={light.status === "On"}
+                  isOn={light.status === "On"}
                   onClick={() => handleLightClick(light.id)}>
                   <CardContent>
                     {light.status === "On" ? (

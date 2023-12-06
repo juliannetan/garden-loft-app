@@ -1,21 +1,17 @@
 // Home.js
-import React from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
-import {
-  FilmIcon,
-  PeopleIcon,
-  MusicIcon,
-  GardenLoftIcon,
+import { GardenLoftIcon, LightbulbMultipleIcon, PhoneIcon, ThermostatIcon, TvIcon
 } from "../components/icons";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import Navbar from "../components/Navbar";
 import CallHelpButtonComponent from "../components/CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
+import Navbar from "../components/Navbar";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -23,16 +19,31 @@ const HomeContainer = styled.div`
   align-items: center;
   min-height: 100vh;
   text-align: center;
+
+  div.slick-slide.slick-active.slick-center.slick-current {
+    .profile-card-div {
+      background: #f3b717;
+      transform: scale(1.2);
+      transition: transform 0.5s ease;
+      padding: 20px;
+    }
+    .icon-container {
+      svg {
+        fill: #e9ebf8;
+      }
+    }
+  }
 `;
 
 const CarouselWrapper = styled.div`
   margin: 0 auto;
   max-width: 1000px; /* Adjust the max-width as needed */
+  justify-content: space-around;
 `;
 
 const CardColumn = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
 `;
@@ -58,12 +69,12 @@ const CustomArrowButton = styled.div`
   }
 `;
 
-const Entertainment = () => {
+const Shortcuts = () => {
   const cardData = [
-    { icon: <FilmIcon />, title: "watch TV" },
-    { icon: <PeopleIcon />, title: "view activities" },
-    { icon: <MusicIcon />, title: "play music" },
-    // Add more cards here
+    { icon: <TvIcon />, title: "tv" },
+    { icon: <PhoneIcon />, title: "call Sue" },
+    { icon: <LightbulbMultipleIcon />, title: "all lights" },
+    { link: "/thermostat",icon: <ThermostatIcon />, title: "thermostat" }
   ];
 
   const CustomNextArrow = ({ onClick }) => (
@@ -79,22 +90,25 @@ const Entertainment = () => {
   );
 
   const settings = {
+    centerMode: true,
+    centerPadding: "0",
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     dots: true,
-    nextArrow: <CustomNextArrow />,
-    prevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow data-clickable="true" />,
+    prevArrow: <CustomPrevArrow data-clickable="true" />,
   };
 
   const sliderRef = React.createRef();
+  const [disableHover, setDisableHover] = useState(false);
 
   return (
     <>
       <GardenLoftIcon />
       <Navbar />
-      <HomeContainer>
+      <HomeContainer disableHover={disableHover}>
         <CarouselWrapper>
           <Slider ref={sliderRef} {...settings}>
             {cardData.map((card, index) => (
@@ -103,6 +117,7 @@ const Entertainment = () => {
                   link={card.link}
                   icon={card.icon}
                   backgroundColor={card.backgroundColor}
+                  disableHover={true}
                 />
                 <div className="profile-card-title">{card.title}</div>
               </CardColumn>
@@ -110,10 +125,10 @@ const Entertainment = () => {
           </Slider>
         </CarouselWrapper>
       </HomeContainer>
-      <LocationIndicator currentPage={"TV+entertainment"} />
+      <LocationIndicator currentPage={"home"} />
       <CallHelpButtonComponent />
     </>
   );
 };
 
-export default Entertainment;
+export default Shortcuts;

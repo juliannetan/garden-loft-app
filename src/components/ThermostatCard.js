@@ -3,13 +3,11 @@ import axios from "axios";
 import styled from "styled-components";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { GardenLoftIcon, SnowflakeIcon } from "./icons";
+import { GardenLoftIcon, HeatIcon, SnowflakeIcon } from "./icons";
 import { Typography } from "@mui/material";
 import Navbar from "./Navbar";
 import CallHelpButtonComponent from "./CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
-import ToggleSwitch from './ToggleSwitch';
-// import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
@@ -59,30 +57,30 @@ const Circle = styled.div`
   border-radius: 50%;
   border: 15px solid white;
   background: ${(props) =>
-    props.$isSwitchOn
+    props.isSwitchOn
       ? "#acdeff"
-      : "linear-gradient(180deg, rgba(255, 35, 74, 0.504) 16.67%, rgba(244, 140, 6, 0.402) 100%)"};
+      : "linear-gradient(142.67deg, rgba(255, 35, 74, 0.7) -8.38%, rgba(255, 195, 110, 0.5) 64.92%)"};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 10px 10px 18px #ba9607;
+  box-shadow: 20px 20px 45px 0px #D9A364CC;
   font-family: "Roboto";
   transition: background-color 1s;
 `;
-
-const ToggleSwitchContainer = styled.div`
-  margin-top: 50px;
-`;
-
 const CircleText = styled.span`
   position: absolute;
-  bottom: 90%;
+  bottom: -80px;
+  width: 100%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #2d3e5f;
-  font-size: 60px;
-  font-family: "Roboto";
+  font-family: Roboto;
+  font-size: 45px;
+  font-weight: 500;
+  line-height: 53px;
+  letter-spacing: 0.10000000149011612px;
+  text-align: center;
 `;
 
 const Buttons = styled.div`
@@ -117,41 +115,6 @@ const IconButton = styled.button`
   }
 `;
 
-const CallHelpButton = styled.button`
-  margin-top: 50px;
-  padding: 10px;
-  background-color: #59acce;
-  color: #e9ebf8;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 48px;
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
-  font-family: "Roboto";
-
-  &:active {
-    transform: scale(0.95); // Add a scaling effect for the pressed state
-    box-shadow: 0 0 0; // Remove box shadow for a pressed effect
-  }
-`;
-
-const BackButton = styled.button`
-  margin-top: 50px;
-  padding: 10px;
-  background-color: #d7e6c9;
-  color: #2d3e5f;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 30px;
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
-  font-family: "Roboto";
-
-  &:active {
-    transform: scale(0.95); // Add a scaling effect for the pressed state
-    box-shadow: 0 0 0; // Remove box shadow for a pressed effect
-  }
-`;
 
 const TopRightButtonContainer = styled.div`
   position: absolute;
@@ -199,7 +162,7 @@ const CustomArrowButton = styled.div`
 
 const ThermostatCard = () => {
   const [temperature, setTemperature] = useState(23);
-  const [isSwitchOn, setIsSwitchOn] = useState(true);
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
 
   const handleSwitchToggle = () => {
     setIsSwitchOn((prevIsSwitchOn) => !prevIsSwitchOn);
@@ -282,12 +245,9 @@ const ThermostatCard = () => {
         <GardenLoftIcon />
         <Navbar />
         <CircleContainer>
-        <CircleText>
-        <Typography variant="h2" fontWeight="500">Thermostat</Typography>
-        </CircleText>
           <Circle isSwitchOn={isSwitchOn} onClick={handleSwitchToggle}>
             <CoolText>
-              {isSwitchOn ? <SnowflakeIcon />: "heat icon"}
+              {isSwitchOn ? <SnowflakeIcon size={35} />: <HeatIcon size={35} />}
               <Typography variant="h5" fontWeight="550">{isSwitchOn ? 'Cool' : 'Heat'}</Typography>
             </CoolText>
             <Temperature variant="h1">{temperature}°C</Temperature>
@@ -302,6 +262,9 @@ const ThermostatCard = () => {
               <RemoveIcon fontSize="large" fontWeight="700" />
           </IconButton>
           </Buttons>
+          <CircleText>
+        <Typography variant="h4" fontWeight="500">press ok to {isSwitchOn ? 'heat' : 'cool'}</Typography>
+        </CircleText>
         </CircleContainer>
         <TopRightButtonContainer></TopRightButtonContainer>
         <BottomLeftButtonContainer>

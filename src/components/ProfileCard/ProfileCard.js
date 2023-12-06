@@ -9,7 +9,7 @@ const ProfileCardLink = styled(Link)`
 
 const ProfileCardContainer = styled.div`
   width: 200px;
-  height: 200px;
+  height: 224px;
   background: ${(props) => (props.backgroundColor !== null && props.backgroundColor !== undefined ? props.backgroundColor : '#7F8181')};
   border-radius: ${(props) => (props.borderRadius !== null && props.borderRadius !== undefined ? props.borderRadius : '10px')} !important;
   box-shadow:0 8px 16px rgba(0, 0, 0, 0.2);
@@ -51,13 +51,12 @@ const CardContent = styled.div`
 `;
 
 const ProfileCard = ({ link, icon, title, backgroundColor, borderRadius, disableHover }) => {
+
   return (
     <ProfileCardLink to={link}>
       <ProfileCardContainer className="profile-card-div" backgroundColor={backgroundColor} borderRadius={borderRadius} disableHover={disableHover}>
         <CardContent>
-          {/* SVG Icon */}
           <div className="icon-container">{icon}</div>
-          {/* Other Card Content Here */}
           <h3>{title}</h3>
         </CardContent>
       </ProfileCardContainer>

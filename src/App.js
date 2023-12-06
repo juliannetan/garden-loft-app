@@ -10,6 +10,7 @@ import QuotesPage from "./pages/QuotesPage";
 import WelcomeScreen from "./components/WelcomeScreen";
 import SmartLightCard from "./components/SmartLightCard";
 import AnimationPage from "./pages/AnimationPage";
+import Shortcuts from "./pages/Shortcuts";
 // import TVRemoteControlHandler from "./components/TvRemoteControlHandler";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/home" element={<Home />} />
+        <Route path="/shortcuts" element={<Shortcuts />} />
         <Route path="/entertainment" element={<Entertainment />} />
         <Route path="/services" element={<Services />} />
         <Route path="/thermostat" element={<ThermostatCard />} />

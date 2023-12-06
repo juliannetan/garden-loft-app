@@ -83,14 +83,14 @@ const StyledProfileCard = styled(ProfileCard)`
 
 const Home = () => {
   const cardData = [
-    { icon: <ShortcutIcon />, title: "Shortcuts" },
-    { link: "/smart-loft", icon: <BroadcastIcon />, title: "Loft Controls" },
-    { link: "/entertainment", icon: <TvIcon />, title: "TV" },
-    { icon: <ScheduleIcon />, title: "Schedule" },
-    { link: "/services", icon: <ServicesIcon />, title: "Services" },
-    { icon: <ContactsIcon />, title: "My Contacts" },
-    { icon: <HealthIcon />, title: "My Health" },
-    { icon: <SettingsIcon />, title: "Settings" },
+    { link: "/shortcuts", icon: <ShortcutIcon />, title: "shortcuts" },
+    { link: "/smart-loft", icon: <BroadcastIcon />, title: "loft controls" },
+    { link: "/entertainment", icon: <TvIcon />, title: "entertainment" },
+    { icon: <ScheduleIcon />, title: "schedule" },
+    { link: "/services", icon: <ServicesIcon />, title: "services" },
+    { icon: <ContactsIcon />, title: "my contacts" },
+    { icon: <HealthIcon />, title: "my health" },
+    { icon: <SettingsIcon />, title: "settings" },
     // Add more cards here
   ];
 

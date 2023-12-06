@@ -37,9 +37,9 @@ const CardColumn = styled.div`
 
 const Services = () => {
   const cardData = [
-    { link: "/grocery", icon: <GroceryIcon />, title: "Grocery" },
-    { link: "/haircut", icon: <HaircutIcon />, title: "Haircut" },
-    { link: "/drycleaning", icon: <DryCleaningIcon />, title: "Dry Cleaning" },
+    { icon: <GroceryIcon />, title: "grocery" },
+    { icon: <HaircutIcon />, title: "haircut" },
+    { icon: <DryCleaningIcon />, title: "dry cleaning" },
     // Add more cards here
   ];
 
@@ -72,7 +72,6 @@ const Services = () => {
           </Slider>
         </CarouselWrapper>
       </HomeContainer>
-      {/* <LocationIndicator currentPage={"services"} /> */}
       <CallHelpButtonComponent />
     </>
   );

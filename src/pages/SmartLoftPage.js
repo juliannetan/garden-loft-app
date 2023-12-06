@@ -15,7 +15,6 @@ import {
 import Navbar from "../components/Navbar";
 import CallHelpButtonComponent from "../components/CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
-import PageTitle from '../components/PageTitle';
 
 const HomeContainer = styled.div`
   display: flex;
@@ -49,9 +48,9 @@ const SmartLoftPage = () => {
   const sliderRef = React.createRef();
 
   const cardData = [
-    { link: "/smart-lights", icon: <LampIcon />, title: "Smart Lights" },
-    { link: "/thermostat", icon: <ThermostatIcon />, title: "Thermostat" },
-    { link: "/smart-home-settings", icon: <DoorIcon />, title: "Door Lock" },
+    { link: "/smart-lights", icon: <LampIcon />, title: "smart Lights" },
+    { link: "/thermostat", icon: <ThermostatIcon />, title: "thermostat" },
+    { icon: <DoorIcon />, title: "door lock" },
     // Add more cards here
   ];
 
@@ -59,7 +58,6 @@ const SmartLoftPage = () => {
     <>
       <GardenLoftIcon />
       <Navbar />
-      <PageTitle title="Loft Controls" />
       <HomeContainer>
         <CarouselWrapper>
           <Slider ref={sliderRef} {...settings}>
