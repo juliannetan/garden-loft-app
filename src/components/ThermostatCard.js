@@ -9,6 +9,22 @@ import Navbar from "./Navbar";
 import CallHelpButtonComponent from "./CallHelpButton";
 import LocationIndicator from "../components/LocationIndicator";
 import ToggleSwitch from './ToggleSwitch';
+// import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
+
+const CustomNextArrow = ({ onClick }) => (
+  <CustomArrowButton onClick={onClick} style={{ right: '300px', position: 'fixed' }}>
+    <ArrowForwardIosIcon fontSize='large'/>
+  </CustomArrowButton>
+);
+
+const CustomPrevArrow = ({ onClick }) => (
+  <CustomArrowButton onClick={onClick} style={{ left: '300px', position: 'fixed' }}>
+    <ArrowBackIosNewIcon fontSize='large' />
+  </CustomArrowButton>
+);
 
 const Container = styled.div`
   display: flex;
@@ -69,7 +85,7 @@ const CircleText = styled.span`
 const Buttons = styled.div`
   position: absolute;
   top: 0;
-  right: -130px;
+  right: 130px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -155,6 +171,27 @@ const Temperature = styled(Typography)`
   line-height: 111px;
   letter-spacing: 0em;
   text-align: left;
+`;
+
+const CustomArrowButton = styled.div`
+  width: 80px;
+  height: 80px;
+  background-color: #E8E8E4;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1; 
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  
+  &:active {
+    transform: translateY(-50%), scale(0.95); // Add a scaling effect for the pressed state
+    box-shadow: 0 0 0; // Remove box shadow for a pressed effect
+  }
 `;
 
 const ThermostatCard = () => {
@@ -244,23 +281,22 @@ const ThermostatCard = () => {
         <CircleText>
         <Typography variant="h2" fontWeight="500">Thermostat</Typography>
         </CircleText>
-          <Circle $isSwitchOn={isSwitchOn}>
+          <Circle isSwitchOn={isSwitchOn} onClick={handleSwitchToggle}>
             <CoolText>
-              <SnowflakeIcon />
+              {isSwitchOn ? <SnowflakeIcon />: "heat icon"}
               <Typography variant="h5" fontWeight="550">{isSwitchOn ? 'Cool' : 'Heat'}</Typography>
             </CoolText>
             <Temperature variant="h1">{temperature}°C</Temperature>
           </Circle>
           <Buttons>
-            <IconButton className="button" onClick={increaseTemperature}>
+            <CustomPrevArrow  />
+            <CustomNextArrow />
+            <IconButton className="button" onClick={increaseTemperature} style={{  right: '400px', position: 'fixed', marginTop: '122px'}}>
               <AddIcon fontSize="large" fontWeight="700" />
             </IconButton>
-            <IconButton className="button" onClick={decreaseTemperature}>
+            <IconButton className="button" onClick={decreaseTemperature} style={{ left: '400px', position: 'fixed', marginTop: '122px' }}>
               <RemoveIcon fontSize="large" fontWeight="700" />
           </IconButton>
-          <ToggleSwitchContainer>
-              <ToggleSwitch handleSwitchToggle={handleSwitchToggle}/>
-            </ToggleSwitchContainer>
           </Buttons>
             </CircleContainer>
         <TopRightButtonContainer>
