@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Typography } from "@mui/material";
 import Modal from "react-modal";
@@ -70,6 +70,13 @@ const CallHelpButtonComponent = ({ onClick }) => {
 
   const closeNestedModal = () => setNestedModalOpen(false);
   const closeCancelNestedModal = () => setCancelNestedModalOpen(false);
+
+  useEffect(() => {
+    return () => {
+      // Cleanup when the component unmounts
+      Modal.setAppElement(null);
+    };
+  }, []);
 
   const handleCallHelpButtonComponent = async () => {
     try {

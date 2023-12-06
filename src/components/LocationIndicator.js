@@ -16,6 +16,7 @@ const LocationIndicator = ({ currentPage }) => {
     margin: 30px; // Adjust margin as needed
   `;
 
+const LocationIndicator = ({ currentPage }) => {
   return (
     <Container>
       <LocationOnIcon sx={{ marginRight: 1, color: "#f3b717", fontSize: 40 }} />

@@ -70,16 +70,20 @@ const CustomArrowButton = styled.div`
   }
 `;
 
+const StyledProfileCard = styled(ProfileCard)`
+  // Add any additional styles here
+`;
+
 const Home = () => {
   const cardData = [
-    { link: '/shortcut', icon: <ShortcutIcon />, title: 'Shortcuts' },
+    { icon: <ShortcutIcon />, title: 'Shortcuts' },
     { link: '/smart-loft', icon: <BroadcastIcon />, title: 'Loft Controls' },
     { link: '/entertainment', icon: <TvIcon />, title: 'TV' },
-    { link: '/schedule', icon: <ScheduleIcon />, title: 'Schedule' },
+    { icon: <ScheduleIcon />, title: 'Schedule' },
     { link: '/services', icon: <ServicesIcon />, title: 'Services' },
-    { link: '/my-contacts', icon: <ContactsIcon />, title: 'My Contacts' },
-    { link: '/my-health', icon: <HealthIcon />, title: 'My Health' },
-    { link: '/settings', icon: <SettingsIcon />, title: 'Settings' }
+    { icon: <ContactsIcon />, title: 'My Contacts' },
+    { icon: <HealthIcon />, title: 'My Health' },
+    { icon: <SettingsIcon />, title: 'Settings' }
     // Add more cards here
   ];
 
@@ -103,8 +107,8 @@ const Home = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     dots: true,
-    nextArrow: <CustomNextArrow />,
-    prevArrow: <CustomPrevArrow />
+    nextArrow: <CustomNextArrow data-clickable="true"/>,
+    prevArrow: <CustomPrevArrow data-clickable="true" />
   };
 
   const sliderRef = React.createRef();
@@ -119,7 +123,7 @@ const Home = () => {
           <Slider ref={sliderRef} {...settings}>
             {cardData.map((card, index) => (
               <CardColumn key={index}>
-                <ProfileCard link={card.link} icon={card.icon} backgroundColor={card.backgroundColor} disableHover={true}/>
+                <StyledProfileCard link={card.link} icon={card.icon} backgroundColor={card.backgroundColor} $disableHover={true}/>
                 <div className="profile-card-title">{card.title}</div>
               </CardColumn>
             ))}

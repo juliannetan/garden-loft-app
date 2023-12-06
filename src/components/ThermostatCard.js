@@ -42,7 +42,7 @@ const Circle = styled.div`
   height: 300px;
   border-radius: 50%;
   border: 15px solid white;
-  background: ${(props) => (props.isSwitchOn ? '#acdeff' : 'linear-gradient(180deg, rgba(255, 35, 74, 0.504) 16.67%, rgba(244, 140, 6, 0.402) 100%)')};
+  background: ${(props) => (props.$isSwitchOn ? '#acdeff' : 'linear-gradient(180deg, rgba(255, 35, 74, 0.504) 16.67%, rgba(244, 140, 6, 0.402) 100%)')};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -244,7 +244,7 @@ const ThermostatCard = () => {
         <CircleText>
         <Typography variant="h2" fontWeight="500">Thermostat</Typography>
         </CircleText>
-          <Circle isSwitchOn={isSwitchOn}>
+          <Circle $isSwitchOn={isSwitchOn}>
             <CoolText>
               <SnowflakeIcon />
               <Typography variant="h5" fontWeight="550">{isSwitchOn ? 'Cool' : 'Heat'}</Typography>
