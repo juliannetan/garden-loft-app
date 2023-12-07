@@ -3,9 +3,10 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styled from "styled-components";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
 import LocationIndicator from "../components/LocationIndicator";
+import { CustomNextArrow, CustomPrevArrow } from "../pages/SmartLoftPage";
+
 import {
   GroceryIcon,
   HaircutIcon,
@@ -38,20 +39,23 @@ const Services = () => {
       <GardenLoftIcon />
       <Navbar />
       <HomeContainer>
+        <CustomPrevArrow  />
+        <CustomNextArrow />
         <CarouselWrapper>
-          <Slider ref={sliderRef} {...settings}>
-            {cardData.map((card, index) => (
-              <CardColumn key={index}>
-                <ProfileCard
-                  link={card.link}
-                  icon={card.icon}
-                  backgroundColor={card.backgroundColor}
-                />
-                <div className="profile-card-title">{card.title}</div>
-              </CardColumn>
-            ))}
-          </Slider>
+        <Slider ref={sliderRef} {...settings}>
+          {cardData.map((card, index) => (
+            <CardColumn key={index}>
+              <ProfileCard
+                link={card.link}
+                icon={card.icon}
+                backgroundColor={card.backgroundColor}
+              />
+              <div className="profile-card-title">{card.title}</div>
+            </CardColumn>
+          ))}
+        </Slider>
         </CarouselWrapper>
+        <LocationIndicator currentPage={"services"} />
       </HomeContainer>
       <CallHelpButtonComponent />
     </>

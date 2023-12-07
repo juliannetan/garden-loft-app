@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -30,6 +30,7 @@ const HomeContainer = styled.div`
     .profile-card-title {
       padding-top: 10px;
       transform: scale(1.2);
+      margin-bottom: 5px;
     }
     .icon-container {
       svg {
@@ -72,9 +73,10 @@ const RoundButton = styled.div`
 
 const lightsData = [
   {
-    id: "floor-light",
-    label: "floor",
+    id: "bathroom-light",
+    label: "bathroom",
     status: "off",
+    entity_id: "switch.thing2",
     icon: <LightbulbFilledIcon />,
   },
   {
@@ -86,19 +88,223 @@ const lightsData = [
   {
     id: "kitchen-light",
     label: "accent",
-    status: "off",
+    entity_id: "switch.thing1",
     icon: <LightbulbFilledIcon />,
   },
   {
     id: "bedroom-light",
     label: "bedroom",
     status: "off",
+    entity_id: "switch.thing3",
     icon: <LightbulbOutlineIcon />,
   },
 ];
 
 const SmartLightsPage = () => {
   const [lights, setLights] = useState(lightsData);
+  const [socket, setSocket] = useState(null);
+  const [incrimentalId, setIncrimentalId] = useState(1);
+  const [manualToggle, setManualToggle] = useState(false);
+  
+  useEffect(() => {
+    const newSocket = new WebSocket("wss://iqbtrqvkgp7trilophztgmkfuggm9sb4.ui.nabu.casa/api/websocket");
+    newSocket.addEventListener('open', () => {
+      // Authenticate with Home Assistant
+      newSocket.send(
+        JSON.stringify({
+          type: "auth",
+          access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI3ZTA5NDg5M2E3NGI0MDY1OWFmMzYzYTJkMDYzOGJhMiIsImlhdCI6MTcwMDc3NDU5MCwiZXhwIjoyMDE2MTM0NTkwfQ.VV19RhjO5Dsc01D3g21NV27WlJeioWmvowtibkqsQ5k", // Replace with your access token
+        })
+      );
+      newSocket.send(
+        JSON.stringify({
+          id: 1,
+          type: "subscribe_events",
+          event_type: "state_changed",
+          entity_id: "switch.thing2", // Replace with your switch entity ID
+        })
+      );
+      newSocket.send(
+        JSON.stringify({
+          id: 1,
+          type: "subscribe_events",
+          event_type: "state_changed",
+          entity_id: "switch.thing1", // Replace with your switch entity ID
+        })
+      );
+      newSocket.send(
+        JSON.stringify({
+          id: 1,
+          type: "subscribe_events",
+          event_type: "state_changed",
+          entity_id: "switch.all_lights", // Replace with your switch entity ID
+        })
+      );
+    });
+
+    newSocket.addEventListener('message', (event) => {
+      try {
+        const receivedData = JSON.parse(event.data);
+        if (receivedData.type === "result" && Array.isArray(receivedData.result)) {
+          const resultArray = receivedData.result;
+          for (let i = 0; i < resultArray.length; i++) {
+            const currentEntry = resultArray[i];
+            if (currentEntry.entity_id === "switch.thing2") {
+              const newSwitchState = currentEntry.state;
+              setLights(newSwitchState);
+              // setManualToggle()
+              // Do UI updates based on the state if needed
+              // ...
+              break;
+            }
+            if (currentEntry.entity_id === "switch.thing1") {
+              const newSwitchState = currentEntry.state;
+              setLights(newSwitchState);
+              // setManualToggle()
+              // Do UI updates based on the state if needed
+              // ...
+              break;
+            }
+            if (currentEntry.entity_id === "switch.all_lights") {
+              const newSwitchState = currentEntry.state;
+              setLights(newSwitchState);
+              // setManualToggle()
+              // Do UI updates based on the state if needed
+              // ...
+              break;
+            }
+          }
+        } else {
+          console.warn(
+            "Received data does not match the expected format:",
+            receivedData
+          );
+        }
+      } catch (error) {
+        console.error("Error parsing JSON:", error);
+      }
+    });
+    newSocket.addEventListener('message', (event) => {
+      try {
+        const receivedData = JSON.parse(event.data);
+    
+        if (receivedData.type === "event" && receivedData.event.event_type === "state_changed") {
+          const entityState = receivedData.event.data.new_state;
+          if (entityState.entity_id === "switch.all_lights") {
+            const newSwitchState = entityState.state;
+            setLights(newSwitchState);
+          }
+          if (entityState.entity_id === "switch.thing2") {
+            const newSwitchState = entityState.state;
+            setLights(newSwitchState);
+          }
+          if (entityState.entity_id === "switch.thing1") {
+            const newSwitchState = entityState.state;
+            setLights(newSwitchState);
+          }
+        }
+      } catch (error) {
+        console.error("Error parsing JSON:", error);
+      }
+    });
+
+    newSocket.addEventListener("close", (event) => {
+      console.log("WebSocket connection closed:", event);
+    });
+
+    setSocket(newSocket);
+
+    return () => {
+      newSocket.close();
+    };
+  }, []);
+
+  const sendMessage = (message) => {
+    if (socket) {
+      socket.send(message);
+    }
+  };
+
+  const getCurrentSwitchState = () => {
+    const message = JSON.stringify({
+      id: incrimentalId,
+      type: "get_states",
+    });
+    setIncrimentalId((prevId) => prevId + 1);
+    sendMessage(message);
+  };
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (!manualToggle) {
+        getCurrentSwitchState();
+      }
+    }, 2000);
+    // Clean up the interval on component unmount
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [manualToggle]); // Run when manualToggle changes
+  // Call getCurrentSwitchState immediately when the page loads
+  useEffect(() => {
+    getCurrentSwitchState();
+  }, []); // Run once on component mount
+
+
+
+  const handleLightClick = (id, entity_id) => {
+    console.log("handlelightclick id " + id, entity_id);
+    const newLights = lights.map((light) =>
+      light.id === id
+        ? { ...light, status: light.status === "on" ? "off" : "on" }
+        : light
+    );
+
+    setLights(newLights);
+    setManualToggle(true);
+  
+    // Turn on/off switch.thing2 and switch.thing1
+    const message = JSON.stringify([
+      {
+        id: incrimentalId,
+        type: "call_service",
+        domain: "switch",
+        service: "toggle",
+        service_data: {
+          entity_id: entity_id, // Replace with your switch.thing2 entity ID
+        },
+      }
+    ]);
+  
+    setIncrimentalId((prevId) => prevId + 1); // Increment by 2 since we are sending two messages
+    sendMessage(message);
+  };
+  
+  
+
+  const handleAllOnOffClick = () => {
+    const allLightsOn = lights.every((light) => light.status === "on");
+    const newLights = lights.map((light) => ({
+      ...light,
+      status: allLightsOn ? "off" : "on",
+    }));
+    setLights(newLights);
+    setManualToggle(true);
+
+    const message = JSON.stringify([
+      {
+        id: incrimentalId,
+        type: "call_service",
+        domain: "switch",
+        service: "toggle",
+        service_data: {
+          entity_id: "switch.all_lights", // Replace with your switch.thing2 entity ID
+        },
+      }
+    ]);
+  
+    setIncrimentalId((prevId) => prevId + 1); // Increment by 2 since we are sending two messages
+    sendMessage(message);
+  };
 
   const settings = {
     centerMode: true,
@@ -112,73 +318,102 @@ const SmartLightsPage = () => {
     prevArrow: <CustomPrevArrow />,
   };
 
-  const handleLightClick = (id) => {
-    setLights((prevLights) =>
-      prevLights.map((light) =>
-        light.id === id
-          ? { ...light, status: light.status === "On" ? "Off" : "On" }
-          : light
-      )
-    );
-  };
+//   return (
+//     <>
+//       <GardenLoftIcon />
+//       <Navbar />
+//       <HomeContainer>
+//         <CarouselWrapper>
+//           <Slider {...settings}>
+//             <CardColumn>
+//               <RoundButton
+//                 className="smart-lights-div"
+//                 isOn={lights.every((light) => light.status === "On")}
+//                 onClick={handleAllOnOffClick}>
+//                 <CardContent>
+//                   {lights.every((light) => light.status === "On") ? (
+//                     <LightbulbMultipleIcon color={"#E9EBF8"} />
+//                   ) : (
+//                     <LightbulbMultipleIcon />
+//                   )}
+//                 </CardContent>
+//               </RoundButton>
+//               <div className="profile-card-title">all lights</div>
+//             </CardColumn>
+//             {lights.map((light) => (
+//               <CardColumn key={light.id}>
+//                 <RoundButton
+//                   className="smart-lights-div"
+//                   isOn={light.status === "On"}
+//                   onClick={() => handleLightClick(light.id)}>
+//                   <CardContent>
+//                     {light.status === "On" ? (
+//                       <LightbulbFilledIcon />
+//                     ) : (
+//                       <LightbulbOutlineIcon />
+//                     )}
+//                   </CardContent>
+//                 </RoundButton>
+//                 <div className="profile-card-title">{light.label}</div>
+//               </CardColumn>
+//             ))}
+//           </Slider>
+//         </CarouselWrapper>
+//         <LocationIndicator currentPage={"lights control"} />
+//         <CallHelpButtonComponent />
+//       </HomeContainer>
+//     </>
+//   );
+// };
 
-  const handleAllOnOffClick = () => {
-    const allLightsOn = lights.every((light) => light.status === "On");
-
-    setLights((prevLights) =>
-      prevLights.map((light) => ({
-        ...light,
-        status: allLightsOn ? "Off" : "On",
-      }))
-    );
-  };
-
-  return (
-    <>
-      <GardenLoftIcon />
-      <Navbar />
-      <HomeContainer>
-        <CarouselWrapper>
-          <Slider {...settings}>
-            <CardColumn>
+return (
+  <>
+    <GardenLoftIcon />
+    <Navbar />
+    <HomeContainer>
+      <CarouselWrapper>
+        <Slider {...settings}>
+          <CardColumn>
+            <RoundButton
+              className="smart-lights-div"
+              isOn={lights.every((light) => light.status === "on")}
+              onClick={handleAllOnOffClick}
+            >
+              <CardContent>
+                {lights.every((light) => light.status === "on") ? (
+                  <LightbulbMultipleIcon color={"#E9EBF8"} />
+                ) : (
+                  <LightbulbMultipleIcon />
+                )}
+              </CardContent>
+            </RoundButton>
+            <div className="profile-card-title">all lights</div>
+          </CardColumn>
+          {lights.map((light) => (
+            <CardColumn key={light.id}>
               <RoundButton
                 className="smart-lights-div"
-                isOn={lights.every((light) => light.status === "On")}
-                onClick={handleAllOnOffClick}>
+                isOn={light.status === "on"}
+                onClick={() => handleLightClick(light.id, light.entity_id)}
+              >
                 <CardContent>
-                  {lights.every((light) => light.status === "On") ? (
-                    <LightbulbMultipleIcon color={"#E9EBF8"} />
+                  {light.status === "on" ? (
+                    <LightbulbFilledIcon />
                   ) : (
-                    <LightbulbMultipleIcon />
+                    <LightbulbOutlineIcon />
                   )}
                 </CardContent>
               </RoundButton>
-              <div className="profile-card-title">all lights</div>
+              <div className="profile-card-title">{light.label}</div>
             </CardColumn>
-            {lights.map((light) => (
-              <CardColumn key={light.id}>
-                <RoundButton
-                  className="smart-lights-div"
-                  isOn={light.status === "On"}
-                  onClick={() => handleLightClick(light.id)}>
-                  <CardContent>
-                    {light.status === "On" ? (
-                      <LightbulbFilledIcon />
-                    ) : (
-                      <LightbulbOutlineIcon />
-                    )}
-                  </CardContent>
-                </RoundButton>
-                <div className="profile-card-title">{light.label}</div>
-              </CardColumn>
-            ))}
-          </Slider>
-        </CarouselWrapper>
-        <LocationIndicator currentPage={"lights control"} />
-        <CallHelpButtonComponent />
-      </HomeContainer>
-    </>
-  );
+          ))}
+        </Slider>
+      </CarouselWrapper>
+      <LocationIndicator currentPage={"lights control"} />
+      <CallHelpButtonComponent />
+    </HomeContainer>
+  </>
+);
 };
 
 export default SmartLightsPage;

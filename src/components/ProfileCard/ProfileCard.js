@@ -50,11 +50,19 @@ const CardContent = styled.div`
   }
 `;
 
-const ProfileCard = ({ link, icon, title, backgroundColor, borderRadius, disableHover }) => {
+const ProfileCard = ({ link, icon, onClick, title, backgroundColor, borderRadius, disableHover }) => {
+  const handleCardClick = () => {
+    // Call the onClick prop when the card is clicked
+    if (onClick) {
+      onClick();
+    }
+  };
+
 
   return (
     <ProfileCardLink to={link}>
-      <ProfileCardContainer className="profile-card-div" backgroundColor={backgroundColor} borderRadius={borderRadius} disableHover={disableHover}>
+      <ProfileCardContainer className="profile-card-div" backgroundColor={backgroundColor} borderRadius={borderRadius} disableHover={disableHover} onClick={handleCardClick}
+>
         <CardContent>
           <div className="icon-container">{icon}</div>
           <h3>{title}</h3>

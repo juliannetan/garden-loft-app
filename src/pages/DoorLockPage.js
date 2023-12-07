@@ -77,7 +77,7 @@ const BottomLeftButtonContainer = styled.div`
 `;
 
 const DoorLockPage = () => {
-  const [isSwitchOn, setIsSwitchOn] = useState(true);
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
 
   const handleSwitchToggle = () => {
     setIsSwitchOn((prevIsSwitchOn) => !prevIsSwitchOn);

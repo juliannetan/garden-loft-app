@@ -22,8 +22,8 @@ const Shortcuts = () => {
   const cardData = [
     { icon: <TvIcon />, title: "watch TV" },
     { icon: <PhoneIcon />, title: "call Sue" },
-    { icon: <LightbulbMultipleIcon />, title: "all lights" },
     { link: "/thermostat", icon: <ThermostatIcon />, title: "thermostat" },
+    { icon: <LightbulbMultipleIcon />, title: "all lights" }
   ];
 
   const settings = {

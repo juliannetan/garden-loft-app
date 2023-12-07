@@ -20,13 +20,13 @@ import LocationIndicator from "../components/LocationIndicator";
 import { CarouselWrapper, CardColumn, HomeContainer } from "./Home";
 
 export const CustomNextArrow = ({ onClick }) => (
-  <CustomArrowButton onClick={onClick} style={{ right: '220px', position: 'fixed' }}>
+  <CustomArrowButton onClick={onClick} style={{ right: '210px', position: 'fixed' }}>
     <ChevronRightIcon/>
   </CustomArrowButton>
 );
 
 export const CustomPrevArrow = ({ onClick }) => (
-  <CustomArrowButton onClick={onClick} style={{ left: '220px', position: 'fixed' }}>
+  <CustomArrowButton onClick={onClick} style={{ left: '210px', position: 'fixed' }}>
     <ChevronLeftIcon />
   </CustomArrowButton>
 );

@@ -2,8 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
 import ProfileCard from './ProfileCard/ProfileCard';
-import { GardenLoftIcon } from './icons';
-import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
+import { GardenLoftIcon, LightbulbFilledIcon } from './icons';
 
 const SmartLightCard = () => {
   const [socket, setSocket] = useState(null);
@@ -135,7 +134,7 @@ const SmartLightCard = () => {
           borderRadius={"200px"}
           onClick={toggleSwitch}
           backgroundColor={switchState === 'on' ? '#FFC100' : '#7F8181'}
-          icon={<LightbulbOutlinedIcon onClick={toggleSwitch} />} />
+          icon={<LightbulbFilledIcon style={{size: "150px"}} />} />
         <div className="profile-card-title">Floor Light</div>
         <Typography className="switch-state">{switchState}</Typography>
       </div></>

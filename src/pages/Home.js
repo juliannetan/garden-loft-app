@@ -35,10 +35,6 @@ export const HomeContainer = styled.div`
       transition: transform 0.5s ease;
       padding: 20px;
     }
-    .profile-card-title {
-      padding-top: 10px;
-      transform: scale(1.2);
-    }
     .icon-container {
       svg {
         fill: #e9ebf8;
@@ -51,6 +47,25 @@ export const CarouselWrapper = styled.div`
   margin: 0 auto;
   max-width: 1300px; /* Adjust the max-width as needed */
   justify-content: space-around;
+
+  .slick-dots li {
+    margin: 0 15px;
+    button:before {
+      font-size: 35px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      text-align: center;
+      color: #E8E8E4;
+      opacity: 1;
+      margin-top: 30px;
+    }
+  }
+
+  li.slick-active button:before{
+      opacity: 1;
+      color: #7F8181;
+    }
 `;
 
 export const CardColumn = styled.div`
