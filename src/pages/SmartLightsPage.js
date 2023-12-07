@@ -73,27 +73,27 @@ const RoundButton = styled.div`
 
 const lightsData = [
   {
-    id: "bathroom-light",
-    label: "bathroom",
+    id: "livingroom-light",
+    label: "livingroom",
     status: "off",
     entity_id: "switch.thing2",
     icon: <LightbulbFilledIcon />,
   },
   {
-    id: "overhead-light",
-    label: "overhead",
+    id: "bathroom-light",
+    label: "bathroom",
     status: "off",
-    icon: <LightbulbFilledIcon />,
-  },
-  {
-    id: "kitchen-light",
-    label: "accent",
-    entity_id: "switch.thing1",
     icon: <LightbulbFilledIcon />,
   },
   {
     id: "bedroom-light",
     label: "bedroom",
+    entity_id: "switch.thing1",
+    icon: <LightbulbFilledIcon />,
+  },
+  {
+    id: "accent-light",
+    label: "accent",
     status: "off",
     entity_id: "switch.thing3",
     icon: <LightbulbOutlineIcon />,

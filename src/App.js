@@ -12,6 +12,7 @@ import WelcomeScreen from "./components/WelcomeScreen";
 import SmartLightCard from "./components/SmartLightCard";
 import AnimationPage from "./pages/AnimationPage";
 import Shortcuts from "./pages/Shortcuts";
+import SmartTVAppSelector from "./pages/SmartTVAppSelector";
 // import TVRemoteControlHandler from "./components/TvRemoteControlHandler";
 
 function App() {
@@ -29,7 +30,8 @@ function App() {
         <Route path="/smart-lights" element={<SmartLightsPage />} />
         <Route path="/quotes-page" element={<QuotesPage />} />
         <Route path="/welcome" element={<WelcomeScreen />} />
-        <Route path="/" element={<AnimationPage />} />
+        <Route path="/animation" element={<AnimationPage />} />
+        <Route path="/" element={<SmartTVAppSelector />} />
       </Routes>
       {/* <TVRemoteControlHandler /> */}
     </Router>
