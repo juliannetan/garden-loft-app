@@ -9,7 +9,7 @@ const AppSelectorContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #FFFCE7;
+  background-color: #36454f;
 `;
 
 const AppItem = styled.div`

@@ -106,7 +106,7 @@ const SmartLightsPage = () => {
   const [socket, setSocket] = useState(null);
   const [incrimentalId, setIncrimentalId] = useState(1);
   const [manualToggle, setManualToggle] = useState(false);
-  
+
   useEffect(() => {
     const newSocket = new WebSocket("wss://iqbtrqvkgp7trilophztgmkfuggm9sb4.ui.nabu.casa/api/websocket");
     newSocket.addEventListener('open', () => {
@@ -142,6 +142,73 @@ const SmartLightsPage = () => {
         })
       );
     });
+
+  newSocket.addEventListener('message', (event) => {
+    try {
+      const receivedData = JSON.parse(event.data);
+      if (receivedData.type === "result" && Array.isArray(receivedData.result)) {
+        const resultArray = receivedData.result;
+        for (let i = 0; i < resultArray.length; i++) {
+          const currentEntry = resultArray[i];
+          if (currentEntry.entity_id === "switch.thing2") {
+            const newSwitchState = currentEntry.state;
+            setLights(newSwitchState);
+            // setManualToggle()
+            // Do UI updates based on the state if needed
+            // ...
+            break;
+          }
+          if (currentEntry.entity_id === "switch.thing1") {
+            const newSwitchState = currentEntry.state;
+            setLights(newSwitchState);
+            // setManualToggle()
+            // Do UI updates based on the state if needed
+            // ...
+            break;
+          }
+          if (currentEntry.entity_id === "switch.all_lights") {
+            const newSwitchState = currentEntry.state;
+            setLights(newSwitchState);
+            // setManualToggle()
+            // Do UI updates based on the state if needed
+            // ...
+            break;
+          }
+        }
+      } else {
+        console.warn(
+          "Received data does not match the expected format:",
+          receivedData
+        );
+      }
+    } catch (error) {
+      console.error("Error parsing JSON:", error);
+    }
+  });
+  newSocket.addEventListener('message', (event) => {
+    try {
+      const receivedData = JSON.parse(event.data);
+
+      if (receivedData.type === "event" && receivedData.event.event_type === "state_changed") {
+        const entityState = receivedData.event.data.new_state;
+        if (entityState.entity_id === "switch.all_lights") {
+          const newSwitchState = entityState.state;
+          setLights(newSwitchState);
+        }
+        if (entityState.entity_id === "switch.thing2") {
+          const newSwitchState = entityState.state;
+          setLights(newSwitchState);
+        }
+        if (entityState.entity_id === "switch.thing1") {
+          const newSwitchState = entityState.state;
+          setLights(newSwitchState);
+        }
+      }
+    } catch (error) {
+      console.error("Error parsing JSON:", error);
+    }
+  });
+
 
     newSocket.addEventListener("close", (event) => {
       console.log("WebSocket connection closed:", event);
@@ -221,7 +288,7 @@ const SmartLightsPage = () => {
       ...light,
       status: allLightsOn ? "off" : "on",
     }));
-    setAllLights(newLights);
+    setLights(newLights);
     setManualToggle(true);
 
     const message = JSON.stringify([
@@ -250,7 +317,7 @@ const SmartLightsPage = () => {
     dots: true,
     nextArrow: <CustomNextArrow />,
     prevArrow: <CustomPrevArrow />,
-  };
+  };    
 
 return (
   <>

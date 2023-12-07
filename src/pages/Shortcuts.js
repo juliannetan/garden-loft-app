@@ -65,7 +65,7 @@ const Shortcuts = () => {
           </Slider>
         </CarouselWrapper>
       </HomeContainer>
-      <LocationIndicator currentPage={"home"} />
+      <LocationIndicator currentPage={"shortcuts"} />
       <CallHelpButtonComponent />
     </>
   );
