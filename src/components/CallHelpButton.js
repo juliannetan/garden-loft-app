@@ -125,10 +125,6 @@ const CallHelpButtonComponent = ({ onClick }) => {
   const handleCancel = async () => {
     closeModal();
     openCancelNestedModal();
-    const shouldInitiateCall = true;
-    if (shouldInitiateCall) {
-      handleCallHelpButtonComponent();
-    }
   };
 
   return (
