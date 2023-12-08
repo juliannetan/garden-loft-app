@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/garden-loft-app/static/css/main.83122b39.css",
-    "main.js": "/garden-loft-app/static/js/main.fd72b8a7.js",
+    "main.js": "/garden-loft-app/static/js/main.84b5697a.js",
     "static/js/787.7fbae279.chunk.js": "/garden-loft-app/static/js/787.7fbae279.chunk.js",
     "static/media/slick.svg": "/garden-loft-app/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/garden-loft-app/static/media/slick.a4e97f5a2a64f0ab1323.eot",
@@ -9,11 +9,11 @@
     "static/media/slick.woff": "/garden-loft-app/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/garden-loft-app/index.html",
     "main.83122b39.css.map": "/garden-loft-app/static/css/main.83122b39.css.map",
-    "main.fd72b8a7.js.map": "/garden-loft-app/static/js/main.fd72b8a7.js.map",
+    "main.84b5697a.js.map": "/garden-loft-app/static/js/main.84b5697a.js.map",
     "787.7fbae279.chunk.js.map": "/garden-loft-app/static/js/787.7fbae279.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.83122b39.css",
-    "static/js/main.fd72b8a7.js"
+    "static/js/main.84b5697a.js"
   ]
 }
