@@ -19,7 +19,7 @@ const WelcomeContainer = styled.div`
     rgba(252, 248, 227, 0.5),
     rgba(255, 255, 255, 0.67)
   ),
-  url("flower.png");
+  url("/garden-loft-app/flower.png");
   background-size: cover; // Ensure the background image covers the entire container
   background-position: center; // Center the background image
 `;
@@ -29,7 +29,7 @@ const WelcomeScreen = () => {
 
   useEffect(() => {
       const timeoutId = setTimeout(() => {
-        navigate('/quotes-page');
+        navigate('/garden-loft-app/quotes-page');
       }, 4000); 
       return () => clearTimeout(timeoutId);
   }, [navigate]);

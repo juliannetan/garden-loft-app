@@ -74,9 +74,9 @@ const SmartLoftPage = () => {
   const sliderRef = React.createRef();
 
   const cardData = [
-    { link: "/smart-lights", icon: <LampIcon />, title: "smart lights" },
-    { link: "/thermostat", icon: <ThermostatIcon />, title: "thermostat" },
-    { link: "/door-lock", icon: <DoorIcon />, title: "door lock" },
+    { link: "/garden-loft-app/smart-lights", icon: <LampIcon />, title: "smart lights" },
+    { link: "/garden-loft-app/thermostat", icon: <ThermostatIcon />, title: "thermostat" },
+    { link: "/garden-loft-app/door-lock", icon: <DoorIcon />, title: "door lock" },
     // Add more cards here
   ];
 

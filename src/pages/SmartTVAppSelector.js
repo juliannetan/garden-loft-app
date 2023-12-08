@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { GardenLoftIcon } from '../components/icons';
 
 const AppSelectorContainer = styled.div`
   display: flex;
@@ -44,11 +43,9 @@ const AppItem = styled.div`
 `;
 
 const SmartTVAppSelector = () => {
-  const [selectedApp, setSelectedApp] = useState(null);
 
   const handleAppSelect = (appName) => {
-    setSelectedApp(appName);
-    navigate("/animation"); // Update with your actual homepage route
+    navigate("/garden-loft-app/animation"); // Update with your actual homepage route
   };
 
   const navigate = useNavigate();

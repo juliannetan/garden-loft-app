@@ -7,14 +7,14 @@ const AnimationPage = () => {
 
   useEffect(() => {
       const timeoutId = setTimeout(() => {
-        navigate('/welcome');
+        navigate('/garden-loft-app/welcome');
       }, 4000); 
       return () => clearTimeout(timeoutId);
   }, [navigate]);
 
   return (
     <img
-      src="garden-loft-animation.gif"
+      src="/garden-loft-app/garden-loft-animation.gif"
       alt="GIF"
       style={{ width: '100%', height: 'auto' }}
     />

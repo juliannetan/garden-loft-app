@@ -22,7 +22,7 @@ const Shortcuts = () => {
   const cardData = [
     { icon: <TvIcon />, title: "watch TV" },
     { icon: <PhoneIcon />, title: "call Sue" },
-    { link: "/thermostat", icon: <ThermostatIcon />, title: "thermostat" },
+    { link: "/garden-loft-app/thermostat", icon: <ThermostatIcon />, title: "thermostat" },
     { icon: <LightbulbMultipleIcon />, title: "all lights" }
   ];
 

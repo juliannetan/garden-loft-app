@@ -58,9 +58,6 @@ const ModalButton = styled.button`
   font-size: 45px;
   font-weight: 550;
 `;
-const IconWrapper = styled.span`
-  margin-right: 10px;
-`;
 
 const CallHelpButtonComponent = ({ onClick }) => {
   const [isModalOpen, setModalOpen] = useState(false);

@@ -10,7 +10,7 @@ function QuotesPage() {
 
   const handleClick = () => {
     // Navigate to the homepage when clicked
-    navigate("/home"); // Update with your actual homepage route
+    navigate("/garden-loft-app/home"); // Update with your actual homepage route
   };
 
   return (

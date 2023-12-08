@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 
 const RippleAnimation = () => {
   useEffect(() => {
-    const audio = new Audio("it-is-a-morning-111708.mp3"); //by -SamuelFrancisJohnson-
+    const audio = new Audio("/garden-loft-app/it-is-a-morning-111708.mp3"); //by -SamuelFrancisJohnson-
 
     const playAudio = () => {
       audio.play().catch((error) => {

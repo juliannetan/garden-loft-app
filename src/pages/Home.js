@@ -111,11 +111,11 @@ export const CustomPrevArrow = ({ onClick }) => (
 
 const Home = () => {
   const cardData = [
-    { link: "/shortcuts", icon: <ShortcutIcon />, title: "shortcuts" },
-    { link: "/smart-loft", icon: <BroadcastIcon />, title: "loft controls" },
-    { link: "/entertainment", icon: <TvIcon />, title: "entertainment" },
+    { link: "/garden-loft-app/shortcuts", icon: <ShortcutIcon />, title: "shortcuts" },
+    { link: "/garden-loft-app/smart-loft", icon: <BroadcastIcon />, title: "loft controls" },
+    { link: "/garden-loft-app/entertainment", icon: <TvIcon />, title: "entertainment" },
     { icon: <ScheduleIcon />, title: "schedule" },
-    { link: "/services", icon: <ServicesIcon />, title: "services" },
+    { link: "/garden-loft-app/services", icon: <ServicesIcon />, title: "services" },
     { icon: <ContactsIcon />, title: "my contacts" },
     { icon: <HealthIcon />, title: "my health" },
     { icon: <SettingsIcon />, title: "settings" },

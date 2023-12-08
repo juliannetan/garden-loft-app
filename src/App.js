@@ -13,27 +13,25 @@ import SmartLightCard from "./components/SmartLightCard";
 import AnimationPage from "./pages/AnimationPage";
 import Shortcuts from "./pages/Shortcuts";
 import SmartTVAppSelector from "./pages/SmartTVAppSelector";
-// import TVRemoteControlHandler from "./components/TvRemoteControlHandler";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/door-lock" element={<DoorLockPage />} />
-        <Route path="/shortcuts" element={<Shortcuts />} />
-        <Route path="/entertainment" element={<Entertainment />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/thermostat" element={<ThermostatCard />} />
-        <Route path="/smart-light" element={<SmartLightCard />} />
-        <Route path="/smart-loft" element={<SmartLoftPage />} />
-        <Route path="/smart-lights" element={<SmartLightsPage />} />
-        <Route path="/quotes-page" element={<QuotesPage />} />
-        <Route path="/welcome" element={<WelcomeScreen />} />
-        <Route path="/animation" element={<AnimationPage />} />
-        <Route path="/" element={<SmartTVAppSelector />} />
+        <Route path="/garden-loft-app/home" element={<Home />} />
+        <Route path="/garden-loft-app/door-lock" element={<DoorLockPage />} />
+        <Route path="/garden-loft-app/shortcuts" element={<Shortcuts />} />
+        <Route path="/garden-loft-app/entertainment" element={<Entertainment />} />
+        <Route path="/garden-loft-app/services" element={<Services />} />
+        <Route path="/garden-loft-app/thermostat" element={<ThermostatCard />} />
+        <Route path="/garden-loft-app/smart-light" element={<SmartLightCard />} />
+        <Route path="/garden-loft-app/smart-loft" element={<SmartLoftPage />} />
+        <Route path="/garden-loft-app/smart-lights" element={<SmartLightsPage />} />
+        <Route path="/garden-loft-app/quotes-page" element={<QuotesPage />} />
+        <Route path="/garden-loft-app/welcome" element={<WelcomeScreen />} />
+        <Route path="/garden-loft-app/animation" element={<AnimationPage />} />
+        <Route path="/garden-loft-app/" element={<SmartTVAppSelector />} />
       </Routes>
-      {/* <TVRemoteControlHandler /> */}
     </Router>
   );
 }

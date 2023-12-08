@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import "./QuoteGenerator.css";
 import ErrorBoundary from "./ErrorBoundary";
-import { Typography } from "@mui/material";
 
 const quotes = [
   "Embrace the rhythm of your breath; it is the song of your spirit dancing with the universe.",

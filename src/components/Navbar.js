@@ -51,7 +51,7 @@ const Navbar = () => {
     <>
       <GardenLoftIcon />
       <NavbarContainer>
-        <StyledButton to="/home">
+        <StyledButton to="/garden-loft-app/home">
           <Rotate90DegreesCcwIcon className="icon" />{" "}
           {/* Replace with your actual ClickMeIcon */}
           <span className="menu-text">Home</span>
